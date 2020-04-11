@@ -1,4 +1,10 @@
 package utils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * 
  * 日期工具类
@@ -11,15 +17,65 @@ public class DateUtil {
 	
 	public static final int YEAR_AND_MONTH = 0;
 	public static final int ONLY_MONTH = 1;
+	public static final int YYYY_POINT_MM = 0;
+	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM");
 
 	/**
-	 * 获取两个日期之间的时间间隔，单位：年/月、月
+	 * 返回两个日期之间的时间间隔，单位：年/月、月
 	 * @param startDate
 	 * @param endDate
 	 * @param type 0：返回以（年/月）为单位   1：返回以（月）为单位
 	 * @return
 	 */
-	public String getTimeIntervalByTwoDates(String startDate, String endDate, int type) {
-		return "";
+	public String getTimeIntervalByTwoDates(String startDateStr, String endDateStr, int type) {
+		String cutDateStr = "";
+		try {
+			Date startDate = formatDateFromStr(YYYY_POINT_MM, startDateStr);
+			Date endDate = formatDateFromStr(YYYY_POINT_MM, endDateStr);
+			if(!startDate.before(endDate)) {
+				startDate = formatDateFromStr(YYYY_POINT_MM, endDateStr);
+				endDate = formatDateFromStr(YYYY_POINT_MM, startDateStr);
+			}
+			Calendar start = Calendar.getInstance();
+			Calendar end = Calendar.getInstance();
+			start.setTime(startDate);
+			end.setTime(endDate);
+			int month = end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
+			int year = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
+			if(month < 0) {
+				month += 12;
+				year --;
+			}
+			if(type == YEAR_AND_MONTH) {
+				if(year > 0 && month > 0) {
+					cutDateStr = year + "年" + month + "月";
+				}else if(year > 0) {
+					cutDateStr = year + "年";
+				}else {
+					cutDateStr = month + "月";
+				}
+			}else if(type == ONLY_MONTH) {
+				if(year > 0 && month > 0) {
+					month = year * 12 + month;
+				}else if(year > 0) {
+					month = year * 12;
+				}
+				cutDateStr = month + "月";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cutDateStr;
 	} 
+	
+	private Date formatDateFromStr(int type, String dateStr) {
+		try {
+			if(type == YYYY_POINT_MM) {
+				return sdf1.parse(dateStr);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
