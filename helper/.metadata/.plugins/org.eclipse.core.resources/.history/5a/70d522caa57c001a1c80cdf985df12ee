@@ -10,8 +10,6 @@ package utils;
 public class StringUtil {
 	
 	private static final String[] SPECIAL_CHARACTER = { "\\","$","(",")","*","+",".","[", "]","?","^","{","}","|","'","%","!","@","#","￥",",","。","，","&","-","_","~","=","<",">","/","`"};   
-	private static final String[] PUNCTUATION_CN = {"！","：","？","，","。","；","（","）","￥","《","》","‘","’","“","”"};
-	private static final String[] PUNCTUATION_EN = {"!",":","?",",",".",";","(",")","$","<",">","'","'","\"","\""}; 
 	
 	/**
 	 * 过滤所有特殊字符
@@ -22,9 +20,11 @@ public class StringUtil {
 		String returnStr = "";
 		if(str != null && !"".equals(str)) {
 			returnStr = str;
-			for(int i=0; i<SPECIAL_CHARACTER.length; i++) {
-				if(returnStr.contains(SPECIAL_CHARACTER[i])) {
-					returnStr = returnStr.replace(SPECIAL_CHARACTER[i], ""); 
+			String[] specials = { "\\","$","(",")","*","+",".","[", "]","?","^","{","}","|","'",
+					"%","!","@","#","￥",",","。","，","&","-","_","~","=","<",">","/","`"};   
+			for(int i=0; i<specials.length; i++) {
+				if(returnStr.contains(specials[i])) {
+					returnStr = returnStr.replace(specials[i], ""); 
 				}
 			}
 		}
@@ -40,9 +40,11 @@ public class StringUtil {
 		String returnStr = "";
 		if(str != null && !"".equals(str)) {
 			returnStr = str;
-			for(int i=0; i<PUNCTUATION_CN.length; i++) {
-				if(returnStr.contains(PUNCTUATION_CN[i])) {
-					returnStr = returnStr.replace(PUNCTUATION_CN[i], PUNCTUATION_EN[i]);
+			String[] cnStrs = {"！","：","？","，","。","；","（","）","￥","《","》","‘","’","“","”"};
+			String[] enStrs = {"!",":","?",",",".",";","(",")","$","<",">","'","'","\"","\""}; 
+			for(int i=0; i<cnStrs.length; i++) {
+				if(returnStr.contains(cnStrs[i])) {
+					returnStr = returnStr.replace(cnStrs[i], enStrs[i]);
 				}
 			}
 		}
