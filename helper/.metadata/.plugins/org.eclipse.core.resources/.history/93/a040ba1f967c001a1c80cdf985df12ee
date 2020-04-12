@@ -1,7 +1,6 @@
 package test;
 
 import utils.DateUtil;
-import utils.StringUtil;
 
 public class TestMain {
 
@@ -16,10 +15,6 @@ public class TestMain {
 		
 		System.out.println(str1);
 		System.out.println(str2);
-		
-		StringUtil stringUtil = new StringUtil();
-		String ss = "sdfjlg?s";
-		System.out.println(stringUtil.filterSpecialCharacterFromString(ss));
 	}
 
 }

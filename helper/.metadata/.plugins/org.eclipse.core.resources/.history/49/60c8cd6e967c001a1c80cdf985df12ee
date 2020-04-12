@@ -18,7 +18,7 @@ public class TestMain {
 		System.out.println(str2);
 		
 		StringUtil stringUtil = new StringUtil();
-		String ss = "sdfjlg?s";
+		String ss = "sdfjlgj@45%^&,/.33";
 		System.out.println(stringUtil.filterSpecialCharacterFromString(ss));
 	}
 
