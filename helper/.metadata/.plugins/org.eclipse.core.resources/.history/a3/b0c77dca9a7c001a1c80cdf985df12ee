@@ -20,6 +20,8 @@ public class StringUtil {
 					returnStr = returnStr.replace(specials[i], ""); 
 				}
 			}
+		}else {
+			return "";
 		}
 		return returnStr;
 	}
