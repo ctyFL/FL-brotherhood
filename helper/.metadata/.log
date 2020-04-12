@@ -2373,3 +2373,9 @@ Caused by: java.io.FileNotFoundException: D:\Git\mingw64\share\git\git-for-windo
 	at java.io.FileInputStream.<init>(FileInputStream.java:93)
 	at org.eclipse.swt.graphics.ImageLoader.load(ImageLoader.java:172)
 	... 78 more
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-12 17:41:10.658
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-12 17:41:10.658
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

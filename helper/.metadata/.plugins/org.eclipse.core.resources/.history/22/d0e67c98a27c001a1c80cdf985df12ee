@@ -21,8 +21,8 @@ public class TestMain {
 		String ss = "sdfjlg?#$%^&sdfsd()&%^~!@#$,./.=-0";
 		System.out.println(stringUtil.filterSpecialCharacterFromString(ss));
 		
-		String string = "dfsag《，。？！’‘“”《》￥";
-		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
+		String string = "dfsag《，。？！";
+		System.out.println();
 	}
 
 }

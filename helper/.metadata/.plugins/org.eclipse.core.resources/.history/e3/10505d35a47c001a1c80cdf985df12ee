@@ -37,14 +37,17 @@ public class StringUtil {
 	public String convertPunctuationToEnglishStatus(String str) {
 		String returnStr = "";
 		if(str != null && !"".equals(str)) {
-			returnStr = str;
-			String[] cnStrs = {"！","：","？","，","。","；","（","）","￥","《","》","‘","’","“","”"};
-			String[] enStrs = {"!",":","?",",",".",";","(",")","$","<",">","'","'","\"","\""}; 
-			for(int i=0; i<cnStrs.length; i++) {
-				if(returnStr.contains(cnStrs[i])) {
-					returnStr = returnStr.replace(cnStrs[i], enStrs[i]);
+			char[] c = str.toCharArray();
+			for(int i=0; i<c.length; i++) {
+				if(c[i] == 12288) {
+					c[i]= (char)32; 
+					continue;
+				}
+				if(c[i]>65280 && c[i]<65375) {
+					c[i]=(char)(c[i]-65248);
 				}
 			}
+			returnStr = new String(c);
 		}
 		return returnStr;
 	}

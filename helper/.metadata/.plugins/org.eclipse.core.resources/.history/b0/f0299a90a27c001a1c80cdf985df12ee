@@ -20,9 +20,6 @@ public class TestMain {
 		StringUtil stringUtil = new StringUtil();
 		String ss = "sdfjlg?#$%^&sdfsd()&%^~!@#$,./.=-0";
 		System.out.println(stringUtil.filterSpecialCharacterFromString(ss));
-		
-		String string = "dfsag《，。？！’‘“”《》￥";
-		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
 	}
 
 }

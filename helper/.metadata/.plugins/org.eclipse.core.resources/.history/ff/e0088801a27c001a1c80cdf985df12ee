@@ -38,13 +38,6 @@ public class StringUtil {
 		String returnStr = "";
 		if(str != null && !"".equals(str)) {
 			returnStr = str;
-			String[] cnStrs = {"！","：","？","，","。","；","（","）","￥","《","》","‘","’","“","”"};
-			String[] enStrs = {"!",":","?",",",".",";","(",")","$","<",">","'","'","\"","\""}; 
-			for(int i=0; i<cnStrs.length; i++) {
-				if(returnStr.contains(cnStrs[i])) {
-					returnStr = returnStr.replace(cnStrs[i], enStrs[i]);
-				}
-			}
 		}
 		return returnStr;
 	}
