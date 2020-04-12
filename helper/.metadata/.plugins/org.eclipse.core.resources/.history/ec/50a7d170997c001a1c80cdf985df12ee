@@ -18,7 +18,7 @@ public class TestMain {
 		System.out.println(str2);
 		
 		StringUtil stringUtil = new StringUtil();
-		String ss = "sdfjlg?#$%^&sdfsd()&%^~!@#$,./.=-0";
+		String ss = "sdfjlg?s";
 		System.out.println(stringUtil.filterSpecialCharacterFromString(ss));
 	}
 
