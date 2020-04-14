@@ -32,7 +32,7 @@ public class StringUtil {
 	}
 	
 	/**
-	 * 将所有中文标点符号转换为英文状态下
+	 * 将所有中文标点符号转换为英文状态
 	 * @param str
 	 * @return
 	 */
