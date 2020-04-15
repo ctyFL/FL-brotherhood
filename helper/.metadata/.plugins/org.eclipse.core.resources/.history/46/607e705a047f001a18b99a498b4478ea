@@ -25,7 +25,8 @@ public class HttpUtil {
 	
 	private static final String nextLine = "\r\n";
 	private static final String boundaryPrefix = "--";
-	private static final String BOUNDARY = "=========7d4a6d158c9";// 数据分割线
+	//数据分割线
+	private static final String BOUNDARY = "=========7d4a6d158c9";
 	
 	/**
 	 * 创建一个post请求线程

@@ -1,7 +1,6 @@
 package test;
 
 import utils.DateUtil;
-import utils.FileUtil;
 import utils.StringUtil;
 
 public class TestMain {
@@ -25,8 +24,7 @@ public class TestMain {
 		String string = "dfsag《，。？！’‘“”《》￥";
 		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
 		
-		String servletName = "http://192.168.10.153:9000/bpm/AioPutRecordServlet";
-		FileUtil.uploadToServer("D://xxx.txt", servletName);
+		Stirng servletName = "http://192.168.10.153:9000/bpm/AioPutRecordServlet"
 	}
 
 }

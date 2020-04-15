@@ -25,7 +25,8 @@ public class HttpUtil {
 	
 	private static final String nextLine = "\r\n";
 	private static final String boundaryPrefix = "--";
-	private static final String BOUNDARY = "=========7d4a6d158c9";// 数据分割线
+	//数据分割线
+	private static final String BOUNDARY = "=========7d4a6d158c9";
 	
 	/**
 	 * 创建一个post请求线程
@@ -66,7 +67,7 @@ public class HttpUtil {
 	 */
 	public static void uploadPost(String filePath, String url) {
 		DataOutputStream out = null;
-		DataInputStream in = null;
+		BufferedReader in = null;
 		String result = "";
 		try {
 			URL postUrl = new URL(url);
@@ -99,15 +100,15 @@ public class HttpUtil {
 			sb.append(nextLine);
 			out.write(sb.toString().getBytes());
 			
-			in = new DataInputStream(new FileInputStream(file));
+			DataInputStream in1 = new DataInputStream(new FileInputStream(file));
 			int bytes = 0;
 			byte[] bufferOut = new byte[1024];
-			while((bytes = in.read(bufferOut)) != -1) {
+			while((bytes = in1.read(bufferOut)) != -1) {
 				out.write(bufferOut, 0, bytes);
 			}
 			out.write(nextLine.getBytes());
-			// 定义最后数据分割线
-			byte[] end_data = (nextLine + boundaryPrefix + BOUNDARY + boundaryPrefix + nextLine).getBytes();
+			in1.close();
+			byte[] end_data = (nextLine + boundaryPrefix + BOUNDARY + boundaryPrefix + nextLine).getBytes();// 定义最后数据分割线
 			out.write(end_data);
 			
 			// flush输出流的缓冲

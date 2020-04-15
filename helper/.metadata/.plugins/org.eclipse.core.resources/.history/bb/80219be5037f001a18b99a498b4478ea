@@ -25,7 +25,7 @@ public class TestMain {
 		String string = "dfsag《，。？！’‘“”《》￥";
 		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
 		
-		String servletName = "http://192.168.10.153:9000/bpm/AioPutRecordServlet";
+		String servletName = "http://192.168.10.153:9000/bpm/MobileImgServlet";
 		FileUtil.uploadToServer("D://xxx.txt", servletName);
 	}
 
