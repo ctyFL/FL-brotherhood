@@ -1,0 +1,42 @@
+package utils;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Map;
+
+/**
+ * 
+ * Http工具类
+ * @author ctyFL
+ * @date 2020年4月15日
+ * @version 1.0
+ * 
+ */
+public class HttpUtil {
+	
+	public static void postToServerThread(Map<String, String> paramsMap, String url) {
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				super.run();
+			
+			}
+		};
+		thread.start();
+	}
+
+	public static void httpPost(Map<String, String> paramsMap, String url) {
+		try {
+			URL postUrl = new URL(url);
+			// 打开和URL之间的连接
+			URLConnection conn = postUrl.openConnection();
+			HttpURLConnection httpConn = (HttpURLConnection) conn;
+			// 设置请求属性
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+}

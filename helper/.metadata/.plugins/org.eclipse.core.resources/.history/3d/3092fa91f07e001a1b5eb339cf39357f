@@ -1,0 +1,77 @@
+package utils;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Map;
+
+/**
+ * 
+ * Http工具类
+ * @author ctyFL
+ * @date 2020年4月15日
+ * @version 1.0
+ * 
+ */
+public class HttpUtil {
+	
+	public static void postToServerThread(Map<String, String> paramsMap, String url) {
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				super.run();
+			
+			}
+		};
+		thread.start();
+	}
+	
+	public static void postUploadFileThread(String filePath, String url) {
+		
+	}
+
+	public static void httpPost(Map<String, String> paramsMap, String url) {
+		PrintWriter out = null;
+		BufferedReader in = null;
+		String response = "";
+		String status = "";
+		try {
+			URL postUrl = new URL(url);
+			// 打开和URL之间的连接
+			HttpURLConnection httpConn = (HttpURLConnection) postUrl.openConnection();
+			// 设置请求属性
+			httpConn.setRequestProperty("Content-Type", "application/json");
+            // 发送POST请求必须设置如下两行
+			httpConn.setDoOutput(true);
+			httpConn.setDoInput(true);
+			// 获取URLConnection对象对应的输出流
+			out = new PrintWriter(httpConn.getOutputStream());
+			// 发送请求参数
+			//out.write(content);
+			// flush输出流的缓冲
+            out.flush();
+            httpConn.connect();
+            // 定义BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
+            String line = "";
+            while((line = in.readLine()) != null) {
+            	response += line;
+            }
+            status = new Integer(httpConn.getResponseCode()).toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(out != null) {
+				out.close();
+			}
+			if(in != null) {
+				in.close();
+			}
+		}
+		System.out.println("status：" + status + "||response：" + response);
+	}
+	
+}
