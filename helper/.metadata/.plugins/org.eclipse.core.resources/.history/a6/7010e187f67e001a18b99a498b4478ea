@@ -33,11 +33,6 @@ public class FileUtil {
 		return file.exists();
 	}
 	
-	/**
-	 * 目标如果是一个文件，则删除
-	 * @param filePath
-	 * @return
-	 */
 	public static boolean deteleFile(String filePath) {
 		File file = new File(filePath);
 		if(file.exists() && file.isFile()) {
