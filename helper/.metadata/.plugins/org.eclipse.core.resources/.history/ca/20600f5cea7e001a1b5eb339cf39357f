@@ -14,11 +14,11 @@ public class FileUtil {
 
 	/**
 	 * 上传本地文件至服务器
-	 * @param filePath
+	 * @param fileName
 	 * @param servletName
 	 */
 	public static void uploadToServer(String filePath, String servletName) {
-		if(isExists(filePath)) {
+		if(isExists()) {
 			
 		}
 	}

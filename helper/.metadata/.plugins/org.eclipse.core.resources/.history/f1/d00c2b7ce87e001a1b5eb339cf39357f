@@ -1,0 +1,13 @@
+package utils;
+
+/**
+ * 
+ * 文件工具类
+ * @author ctyFL
+ * @date 2020年4月15日
+ * @version 1.0
+ * 
+ */
+public class FileUtil {
+
+}
