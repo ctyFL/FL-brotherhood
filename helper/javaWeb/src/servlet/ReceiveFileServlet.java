@@ -93,7 +93,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 解析文件参数
+	 * 解析接收文件参数
 	 * @param request
 	 */
 	private void parseFileParam(HttpServletRequest request) {
