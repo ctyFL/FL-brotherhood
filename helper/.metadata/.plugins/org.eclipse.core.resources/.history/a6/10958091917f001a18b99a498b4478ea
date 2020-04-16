@@ -68,12 +68,6 @@ public class DateUtil {
 		return cutDateStr;
 	} 
 	
-	/**
-	 * 返回按指定格式解析的日期对象
-	 * @param type
-	 * @param dateStr
-	 * @return
-	 */
 	private Date formatDateFromStr(int type, String dateStr) {
 		try {
 			if(type == YYYY_POINT_MM) {
