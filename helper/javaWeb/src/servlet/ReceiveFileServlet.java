@@ -80,7 +80,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void saveFile(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
-		File file = new File(savepath);
+		File file = new File("E:/ppppp");
 		if (!file.exists() && !file.isDirectory()) {
 			file.mkdirs();
 		}
