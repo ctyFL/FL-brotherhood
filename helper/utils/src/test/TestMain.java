@@ -26,7 +26,8 @@ public class TestMain {
 		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
 		
 		String servletName = "http://192.168.10.153:9100/bpm/ReceiveFileServlet";
-		FileUtil.uploadToServer("D://xxx.txt", servletName);
+		FileUtil.uploadToServer("D:/xxx.txt", servletName);
+
 	}
 
 }

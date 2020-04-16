@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +43,6 @@ public class ReceiveFileServlet extends HttpServlet {
     public void init() throws ServletException {
     	super.init();
     	this.savepath = getInitParameter("savepath") + File.separator;
-    	createSavePath();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,6 +53,7 @@ public class ReceiveFileServlet extends HttpServlet {
 		doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		createSavePath();
 		parseFileParam(request);
 		if(fileItem == null) {
 			response.getWriter().println("paramError");
@@ -78,9 +80,13 @@ public class ReceiveFileServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void saveFile(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
+		File file = new File(savepath);
+		if (!file.exists() && !file.isDirectory()) {
+			file.mkdirs();
+		}
 		InputStream in = fileItem.getInputStream();
 		String newFileName = "112.txt";
-		File newFile = new File(savepath, newFileName);
+		File newFile = new File(savepath + newFileName);
 		FileOutputStream out = new FileOutputStream(newFile);
 		byte[] bytes = new byte[1024];
 		int len = 0;

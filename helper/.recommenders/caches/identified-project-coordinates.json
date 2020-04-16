@@ -1,1 +1,1 @@
-{}
+[[{"location":"D:\\tomcat\\apache-tomcat-8.5.20\\lib\\servlet-api.jar","type":"JAR","hints":{}},"ABSENT"],[{"location":"D:\\jdk\\jdk1.8","type":"JRE","hints":{}},"jre:jre:1.8.0"],[{"location":"D:\\jdk\\jdk1.8","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
