@@ -67,6 +67,6 @@ public class StringUtil_FL {
 	 */
 	public static String getNowDateCurrentTimeStr() {
 		Date date = new Date();
-		return DateUtil.formatDateToStr(DateUtil.YYYYMMDD, date) + System.currentTimeMillis();
+		return DateUtil_FL.formatDateToStr(DateUtil_FL.YYYYMMDD, date) + System.currentTimeMillis();
 	}
 }

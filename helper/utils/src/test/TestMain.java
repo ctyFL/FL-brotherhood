@@ -1,6 +1,6 @@
 package test;
 
-import utils.DateUtil;
+import utils.DateUtil_FL;
 import utils.FileUtil_FL;
 import utils.StringUtil_FL;
 
@@ -11,8 +11,8 @@ public class TestMain {
 		String date2 = "2020.1";
 		String date3 = "2015.11";
 		
-		String str1 = DateUtil.getTimeIntervalByTwoDates(date1, date2, DateUtil.ONLY_MONTH);
-		String str2 = DateUtil.getTimeIntervalByTwoDates(date2, date3, DateUtil.YEAR_AND_MONTH);
+		String str1 = DateUtil_FL.getTimeIntervalByTwoDates(date1, date2, DateUtil_FL.ONLY_MONTH);
+		String str2 = DateUtil_FL.getTimeIntervalByTwoDates(date2, date3, DateUtil_FL.YEAR_AND_MONTH);
 		
 		System.out.println(str1);
 		System.out.println(str2);

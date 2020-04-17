@@ -15,7 +15,7 @@ import java.util.Map;
  * @version 1.0
  * 
  */
-public class DateUtil {
+public class DateUtil_FL {
 	
 	public static final int YEAR_AND_MONTH = 0;
 	public static final int ONLY_MONTH = 1;
