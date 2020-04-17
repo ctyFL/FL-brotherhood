@@ -11,7 +11,7 @@ import java.util.UUID;
  * @version 1.0
  * 
  */
-public class StringUtil {
+public class StringUtilFL {
 	
 	private static final String[] SPECIAL_CHARACTER = { "\\","$","(",")","*","+",".","[", "]","?","^","{","}","|","'","%","!","@","#","￥",",","。","，","&","-","_","~","=","<",">","/","`"};   
 	private static final String[] PUNCTUATION_CN = {"！","：","？","，","。","；","（","）","￥","《","》","‘","’","“","”"};
@@ -57,7 +57,7 @@ public class StringUtil {
 	 * 获取随机UUID字符串
 	 * @return
 	 */
-	public static String getRandomUUID() {
+	public static String getRandomUUIDStr() {
 		return UUID.randomUUID().toString().replace("-", "");
 	}
 	
