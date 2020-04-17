@@ -26,7 +26,7 @@ public class TestMain {
 		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
 		
 		String servletName = "http://192.168.10.153:9100/AriesFL/ReceiveFileServlet";
-		FileUtil.uploadToServer("D:/xxx.xml", servletName);
+		FileUtil.uploadToServer("D:/31.jpg", servletName);
 
 	}
 
