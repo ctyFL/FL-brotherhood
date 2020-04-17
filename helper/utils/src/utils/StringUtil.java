@@ -1,4 +1,7 @@
 package utils;
+
+import java.util.UUID;
+
 /**
  * 
  * 字符串工具类
@@ -18,7 +21,7 @@ public class StringUtil {
 	 * @param str
 	 * @return
 	 */
-	public String filterSpecialCharacterFromString(String str) {
+	public static String filterSpecialCharacterFromString(String str) {
 		String returnStr = "";
 		if(str != null && !"".equals(str)) {
 			returnStr = str;
@@ -36,7 +39,7 @@ public class StringUtil {
 	 * @param str
 	 * @return
 	 */
-	public String convertPunctuationToEnglishStatus(String str) {
+	public static String convertPunctuationToEnglishStatus(String str) {
 		String returnStr = "";
 		if(str != null && !"".equals(str)) {
 			returnStr = str;
@@ -47,6 +50,14 @@ public class StringUtil {
 			}
 		}
 		return returnStr;
+	}
+	
+	/**
+	 * 获取随机UUID字符串
+	 * @return
+	 */
+	public static String getRandomUUID() {
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 	
 }
