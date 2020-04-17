@@ -83,6 +83,8 @@ public class HttpUtil {
 			httpConn.setRequestProperty("Charsert", "UTF-8");
 			httpConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
 			httpConn.connect();
+			//返回状态码
+			System.out.println("ResponseCode：" + httpConn.getResponseCode());
 			
 			out = new DataOutputStream(httpConn.getOutputStream());
 			// 添加参数file
