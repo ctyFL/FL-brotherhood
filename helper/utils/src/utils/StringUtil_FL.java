@@ -8,7 +8,7 @@ import java.util.UUID;
  * 字符串工具类
  * @author ctyFL
  * @date 2020年4月11日
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class StringUtil_FL {

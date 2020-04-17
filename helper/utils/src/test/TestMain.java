@@ -23,6 +23,8 @@ public class TestMain {
 		String string = "dfsag《，。？！’‘“”《》￥";
 		System.out.println(StringUtil_FL.convertPunctuationToEnglishStatus(string));
 		
+		System.out.println(StringUtil_FL.getNowDateCurrentTimeStr());
+		
 		String servletName = "http://192.168.10.153:9100/AriesFL/ReceiveFileServlet";
 		FileUtil_FL.uploadToServer("D:/31.jpg", servletName);
 
