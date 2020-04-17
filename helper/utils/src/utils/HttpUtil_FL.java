@@ -18,7 +18,7 @@ import java.util.Map;
  * @version 1.0
  * 
  */
-public class HttpUtil {
+public class HttpUtil_FL {
 	
 	private static final String nextLine = "\r\n";
 	private static final String boundaryPrefix = "--";

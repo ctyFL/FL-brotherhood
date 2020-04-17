@@ -19,7 +19,7 @@ public class FileUtil {
 	 */
 	public static void uploadToServer(String filePath, String servletName) {
 		if(isExists(filePath)) {
-			HttpUtil.postUploadFileThread(filePath, servletName);
+			HttpUtil_FL.postUploadFileThread(filePath, servletName);
 		}
 	}
 
