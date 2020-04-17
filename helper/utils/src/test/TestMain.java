@@ -2,7 +2,7 @@ package test;
 
 import utils.DateUtil;
 import utils.FileUtil;
-import utils.StringUtilFL;
+import utils.StringUtil_FL;
 
 public class TestMain {
 
@@ -18,10 +18,10 @@ public class TestMain {
 		System.out.println(str2);
 		
 		String ss = "sdfjlg?#$%^&sdfsd()&%^~!@#$,./.=-0";
-		System.out.println(StringUtilFL.filterSpecialCharacterFromString(ss));
+		System.out.println(StringUtil_FL.filterSpecialCharacterFromString(ss));
 		
 		String string = "dfsag《，。？！’‘“”《》￥";
-		System.out.println(StringUtilFL.convertPunctuationToEnglishStatus(string));
+		System.out.println(StringUtil_FL.convertPunctuationToEnglishStatus(string));
 		
 		String servletName = "http://192.168.10.153:9100/AriesFL/ReceiveFileServlet";
 		FileUtil.uploadToServer("D:/31.jpg", servletName);

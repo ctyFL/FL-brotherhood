@@ -11,7 +11,7 @@ import java.util.UUID;
  * @version 1.0
  * 
  */
-public class StringUtilFL {
+public class StringUtil_FL {
 	
 	private static final String[] SPECIAL_CHARACTER = { "\\","$","(",")","*","+",".","[", "]","?","^","{","}","|","'","%","!","@","#","￥",",","。","，","&","-","_","~","=","<",">","/","`"};   
 	private static final String[] PUNCTUATION_CN = {"！","：","？","，","。","；","（","）","￥","《","》","‘","’","“","”"};
