@@ -22,7 +22,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 /**
  * 
  * 接收文件servlet
- * 需要jar包（commons-fileupload.jar）
+ * 需要jar包（commons-fileupload.jar commons-io.jar）
  * @author ctyFL
  * @date 2020年4月16日
  * @version 1.0
@@ -32,6 +32,8 @@ public class ReceiveFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private Map<String, String> params = new HashMap<String, String>();
+	private String savepath_root = "";
+	private String savepath_father = "";
 	private String savepath = "";
 	private FileItem fileItem = null; 
  	
@@ -42,18 +44,20 @@ public class ReceiveFileServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
     	super.init();
-    	this.savepath = getInitParameter("savepath") + File.separator;
+    	savepath_root = getInitParameter("savepath_root");
+    	savepath_father = getInitParameter("savepath_father");
+    	savepath = savepath_root + File.separator + savepath_father + File.separator;
+    	createSavePath();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath() + ": ");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		createSavePath();
 		parseFileParam(request);
 		if(fileItem == null) {
 			response.getWriter().println("paramError");
@@ -91,7 +95,7 @@ public class ReceiveFileServlet extends HttpServlet {
 		}
 		out.close();
 		in.close();
-		response.getWriter().println(savepath + "/" + newFileName);
+		response.getWriter().println(savepath + newFileName);
 	}
 	
 	/**
@@ -111,11 +115,16 @@ public class ReceiveFileServlet extends HttpServlet {
 					params.put(name, value);
 				}else {
 					fileItem = item;
+					parseFileFormat(item.getFieldName());
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void parseFileFormat(String fileName) {
+		
 	}
 	
 	/**
@@ -130,9 +139,12 @@ public class ReceiveFileServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 创建文件保存父级路径
+	 * 创建文件保存父级文件夹
 	 */
 	private void createSavePath() {
+		if("".equals(savepath)) {
+			savepath = "E:" + File.separator + "save" + File.separator;
+		}
 		File file = new File(savepath);
 		if(!file.exists() && !file.isDirectory()) {
 			file.mkdirs();

@@ -7,8 +7,12 @@
   	<servlet-name>ReceiveFileServlet</servlet-name>
   	<servlet-class>servlet.ReceiveFileServlet</servlet-class>
   	<init-param>
-  		<param-name>savepath</param-name>
-  		<param-value>E:/fileSavePath</param-value>
+  		<param-name>savepath_root</param-name>
+  		<param-value>E:</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>savepath_father</param-name>
+  		<param-value>fileSavePath</param-value>
   	</init-param>
   </servlet>
   
