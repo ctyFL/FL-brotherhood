@@ -80,13 +80,9 @@ public class ReceiveFileServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void saveFile(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
-		File file = new File("E:/ppppp/124.txt");
-		if (!file.exists() && !file.isDirectory()) {
-			file.mkdirs();
-		}
 		InputStream in = fileItem.getInputStream();
 		String newFileName = "112.txt";
-		File newFile = new File(savepath + newFileName);
+		File newFile = new File(savepath, newFileName);
 		FileOutputStream out = new FileOutputStream(newFile);
 		byte[] bytes = new byte[1024];
 		int len = 0;
