@@ -49,7 +49,6 @@ public class ReceiveFileServlet extends HttpServlet {
     	savepath_root = getInitParameter("savepath_root");
     	savepath_father = getInitParameter("savepath_father");
     	savepath = savepath_root + File.separator + savepath_father + File.separator;
-    	createSavePath();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,6 +85,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void saveFile(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
+		createSavePath();
 		InputStream in = fileItem.getInputStream();
 		String newFileName = createNewFileName();
 		File newFile = new File(savepath, newFileName);
