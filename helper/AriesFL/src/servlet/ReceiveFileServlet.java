@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -36,6 +37,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	private String savepath_father = "";
 	private String savepath = "";
 	private FileItem fileItem = null; 
+	private String fileFormat = "";
  	
     public ReceiveFileServlet() {
         super();
@@ -85,7 +87,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	 */
 	private void saveFile(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
 		InputStream in = fileItem.getInputStream();
-		String newFileName = "112.txt";
+		String newFileName = createNewFileName();
 		File newFile = new File(savepath, newFileName);
 		FileOutputStream out = new FileOutputStream(newFile);
 		byte[] bytes = new byte[1024];
@@ -115,7 +117,7 @@ public class ReceiveFileServlet extends HttpServlet {
 					params.put(name, value);
 				}else {
 					fileItem = item;
-					parseFileFormat(item.getFieldName());
+					parseFileFormat(item.getName());
 				}
 			}
 		} catch (Exception e) {
@@ -123,8 +125,22 @@ public class ReceiveFileServlet extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * 创建随机新文件名
+	 * @return
+	 */
+	private String createNewFileName() {
+		return UUID.randomUUID().toString().replace("-", "") + fileFormat;
+	}
+	
+	/**
+	 * 解析文件格式
+	 * @param fileName
+	 */
 	private void parseFileFormat(String fileName) {
-		
+		if(fileName.indexOf(".") != -1) {
+			fileFormat = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		}
 	}
 	
 	/**

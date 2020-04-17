@@ -25,7 +25,7 @@ public class TestMain {
 		String string = "dfsag《，。？！’‘“”《》￥";
 		System.out.println(stringUtil.convertPunctuationToEnglishStatus(string));
 		
-		String servletName = "http://192.168.10.153:9100/javaWeb/ReceiveFileServlet";
+		String servletName = "http://192.168.10.153:9100/AriesFL/ReceiveFileServlet";
 		FileUtil.uploadToServer("D:/xxx.txt", servletName);
 
 	}
