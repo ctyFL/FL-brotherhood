@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -17,8 +19,15 @@ public class DateUtil {
 	
 	public static final int YEAR_AND_MONTH = 0;
 	public static final int ONLY_MONTH = 1;
+	
+	public static final Map<Integer, String> dateFormatTypeMap = new HashMap<Integer, String>(); 
 	public static final int YYYY_POINT_MM = 0;
-	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM");
+ 	public static final int YYYYMMDD = 1;
+	
+	static {
+		dateFormatTypeMap.put(YYYY_POINT_MM, "yyyy.MM");
+		dateFormatTypeMap.put(YYYYMMDD, "yyyyMMdd");
+	}
 
 	/**
 	 * 返回两个日期之间的时间间隔，单位：年/月、月
@@ -27,7 +36,7 @@ public class DateUtil {
 	 * @param type 0：返回以（年/月）为单位   1：返回以（月）为单位
 	 * @return
 	 */
-	public String getTimeIntervalByTwoDates(String startDateStr, String endDateStr, int type) {
+	public static String getTimeIntervalByTwoDates(String startDateStr, String endDateStr, int type) {
 		String cutDateStr = "";
 		try {
 			Date startDate = formatDateFromStr(YYYY_POINT_MM, startDateStr);
@@ -74,14 +83,25 @@ public class DateUtil {
 	 * @param dateStr
 	 * @return
 	 */
-	private Date formatDateFromStr(int type, String dateStr) {
+	public static Date formatDateFromStr(int type, String dateStr) {
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormatTypeMap.get(type));
 		try {
-			if(type == YYYY_POINT_MM) {
-				return sdf1.parse(dateStr);
-			}
+			return sdf.parse(dateStr);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	/**
+	 * 返回指定的格式化日期字符串
+	 * @param type
+	 * @param date
+	 * @return
+	 */
+	public static String formatDateToStr(int type, Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormatTypeMap.get(type));
+		return sdf.format(date);
+	}
+	
 }
