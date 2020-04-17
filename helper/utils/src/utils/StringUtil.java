@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -60,4 +61,12 @@ public class StringUtil {
 		return UUID.randomUUID().toString().replace("-", "");
 	}
 	
+	/**
+	 * 返回当前日期+当前时间毫秒数字符串
+	 * @return
+	 */
+	public static String getNowDateCurrentTimeStr() {
+		Date date = new Date();
+		return DateUtil.formatDateToStr(DateUtil.YYYYMMDD, date) + System.currentTimeMillis();
+	}
 }
