@@ -151,7 +151,7 @@
 
 		
 		
-      <Context docBase="javaWeb" path="/javaWeb" reloadable="true" source="org.eclipse.jst.jee.server:javaWeb"/></Host>
+      <Context docBase="AriesFL" path="/AriesFL" reloadable="true" source="org.eclipse.jst.jee.server:AriesFL"/></Host>
     </Engine>
   </Service>
 </Server>
