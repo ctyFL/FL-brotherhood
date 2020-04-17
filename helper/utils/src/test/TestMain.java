@@ -1,7 +1,7 @@
 package test;
 
 import utils.DateUtil;
-import utils.FileUtil;
+import utils.FileUtil_FL;
 import utils.StringUtil_FL;
 
 public class TestMain {
@@ -24,7 +24,7 @@ public class TestMain {
 		System.out.println(StringUtil_FL.convertPunctuationToEnglishStatus(string));
 		
 		String servletName = "http://192.168.10.153:9100/AriesFL/ReceiveFileServlet";
-		FileUtil.uploadToServer("D:/31.jpg", servletName);
+		FileUtil_FL.uploadToServer("D:/31.jpg", servletName);
 
 	}
 

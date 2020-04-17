@@ -10,7 +10,7 @@ import java.io.File;
  * @version 1.0
  * 
  */
-public class FileUtil {
+public class FileUtil_FL {
 
 	/**
 	 * 上传本地文件至服务器
