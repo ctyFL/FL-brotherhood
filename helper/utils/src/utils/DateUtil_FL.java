@@ -19,6 +19,8 @@ public class DateUtil_FL {
 	
 	public static final int YEAR_AND_MONTH = 0;
 	public static final int ONLY_MONTH = 1;
+	public static final int YEAR_SPLIT = 2;
+	public static final int MONTH_SPLIT = 3;
 	
 	public static final Map<Integer, String> dateFormatTypeMap = new HashMap<Integer, String>(); 
 	public static final int YYYY_POINT_MM = 0;
@@ -33,7 +35,7 @@ public class DateUtil_FL {
 	 * 返回两个日期之间的时间间隔，单位：年/月、月
 	 * @param startDate
 	 * @param endDate
-	 * @param type 0：返回以（年/月）为单位   1：返回以（月）为单位
+	 * @param type 1.YEAR_AND_MONTH 2.ONLY_MONTH 3.YEAR_SPLIT 4.MONTH_SPLIT
 	 * @return
 	 */
 	public static String getTimeIntervalByTwoDates(String startDateStr, String endDateStr, int type) {
@@ -69,6 +71,10 @@ public class DateUtil_FL {
 				}else if(year > 0) {
 					month = year * 12;
 				}
+				cutDateStr = month + "月";
+			}else if(type == YEAR_SPLIT) {
+				cutDateStr = year + "年";
+			}else if(type == MONTH_SPLIT) {
 				cutDateStr = month + "月";
 			}
 		} catch (Exception e) {
