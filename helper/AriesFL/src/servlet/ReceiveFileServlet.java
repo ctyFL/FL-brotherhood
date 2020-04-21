@@ -159,7 +159,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	 */
 	private void createSavePath() {
 		if("".equals(savepath)) {
-			savepath = "E:" + File.separator + "save" + File.separator;
+			savepath = "E:" + File.separator + "fileSavePath" + File.separator;
 		}
 		File file = new File(savepath);
 		if(!file.exists() && !file.isDirectory()) {
