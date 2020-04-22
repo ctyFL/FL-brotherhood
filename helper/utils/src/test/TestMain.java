@@ -2,6 +2,7 @@ package test;
 
 import utils.DateUtil_FL;
 import utils.FileUtil_FL;
+import utils.HttpUtil_FL;
 import utils.StringUtil_FL;
 
 public class TestMain {
@@ -27,7 +28,9 @@ public class TestMain {
 		
 		String servletName = "http://192.168.10.153:9100/AriesFL/ReceiveFileServlet";
 		FileUtil_FL.uploadToServer("D:/31.jpg", servletName);
-
+		
+		HttpUtil_FL.HttpGetThread(null, servletName);
+		HttpUtil_FL.HttpPostThread(null, servletName);
 	}
 
 }
