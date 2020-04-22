@@ -5,10 +5,17 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Reader;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Map;
+
+import javax.naming.spi.DirStateFactory.Result;
 
 /**
  * 
@@ -27,23 +34,39 @@ public class HttpUtil_FL {
 	private static final String POST = "POST";
 	
 	/**
-	 * 创建一个post请求线程
+	 * 创建一个GET请求线程
 	 * @param paramsMap
 	 * @param url
 	 */
-	public static void postToServerThread(Map<String, String> paramsMap, String url) {
+	public static void HttpGetThread(Map<String, String> paramsMap, String url) {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
 				super.run();
-			
+				HttpGet(paramsMap, url);
 			}
 		};
 		thread.start();
 	}
 	
 	/**
-	 * 创建一个通过post上传文件的线程
+	 * 创建一个POST请求线程
+	 * @param paramsMap
+	 * @param url
+	 */
+	public static void HttpPostThread(Map<String, String> paramsMap, String url) {
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				super.run();
+				HttpPost(paramsMap, url);
+			}
+		};
+		thread.start();
+	}
+	
+	/**
+	 * 创建一个通过POST上传文件的线程
 	 * @param filePath
 	 * @param url
 	 */
@@ -59,11 +82,11 @@ public class HttpUtil_FL {
 	}
 	
 	/**
-	 * 通过post上传文件
+	 * 通过POST上传文件
 	 * @param filePath
 	 * @param url
 	 */
-	public static void uploadPost(String filePath, String url) {
+	private static void uploadPost(String filePath, String url) {
 		DataOutputStream out = null;
 		DataInputStream in = null;
 		String result = "";
@@ -135,24 +158,133 @@ public class HttpUtil_FL {
 		}
 		System.out.println("result：" + result);
 	}
-
+	
+	/**
+	 * HttpGet请求
+	 * @param paramMap
+	 * @param url
+	 */
+	private static void HttpGet(Map<String, String> paramsMap, String url) {
+		url = url + "?" + getParamString(paramsMap);
+		String result = "";
+		HttpURLConnection conn = null;
+		try {
+			URL getUrl = new URL(url); 
+			conn = (HttpURLConnection) getUrl.openConnection();
+			setHttpUrlConnection(conn, GET);
+			conn.connect();
+			result = readResposeContent(conn.getInputStream());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(conn != null) {
+				conn.disconnect();
+			}
+		}
+		System.out.println("result：" + result);
+	}
+	
+	/**
+	 * HttpPost请求
+	 * @param paramMap
+	 * @param url
+	 */
+	private static void HttpPost(Map<String, String> paramsMap, String url) {
+		HttpURLConnection conn = null;
+		PrintWriter writer = null;
+		String result = "";
+		try {
+			URL postUrl = new URL(url);
+			conn = (HttpURLConnection) postUrl.openConnection();
+			String params = getParamString(paramsMap);
+			setHttpUrlConnection(conn, POST);
+	        conn.connect();
+	        writer = new PrintWriter(conn.getOutputStream());
+	        writer.print(params);
+	        writer.flush();
+	        result = readResposeContent(conn.getInputStream());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(conn != null) {
+				conn.disconnect();
+			}
+		}
+		System.out.println("result：" + result);
+	}
+	
+	/**
+	 * 设置Http连接属性
+	 * @param conn
+	 * @param requestMethod
+	 */
+	private static void setHttpUrlConnection(HttpURLConnection conn, String requestMethod) throws ProtocolException {
+		if(conn != null) {
+			conn.setRequestMethod(requestMethod);
+			conn.setRequestProperty("accept", "*/*");
+	        conn.setRequestProperty("Accept-Language", "zh-CN");
+	        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)");
+	        conn.setRequestProperty("Proxy-Connection", "Keep-Alive");
+	        
+	        if(isPost(requestMethod)) {
+	        	// 发送POST请求必须设置如下两行
+	        	conn.setDoInput(true);
+	        	conn.setDoOutput(true);
+	        }
+		}
+	}
+	
+	/**
+	 * 返回响应字节流转为的字符串
+	 * @param in
+	 */
+	private static String readResposeContent(InputStream in) throws IOException {
+		Reader reader = null;
+		StringBuilder builder = new StringBuilder();
+		try {
+			reader = new InputStreamReader(in);
+			char[] buffer = new char[1024];
+			int head = 0;
+			while((head = reader.read(buffer)) > 0) {
+				builder.append(new String(buffer, 0, head));
+			}
+			return builder.toString();
+		} finally {
+			if(in != null) {
+				in.close();
+			}
+			if(reader != null) {
+				reader.close();
+			}
+		}
+	}
+	
 	/**
 	 * 解析参数map
 	 * @param paramMap
 	 * @return
 	 */
-	private static String getParamString(Map<String, String> paramMap) {
-		if(paramMap != null && !paramMap.isEmpty()) {
+	private static String getParamString(Map<String, String> paramsMap) {
+		if(paramsMap != null && !paramsMap.isEmpty()) {
 			StringBuilder builder = new StringBuilder();
-			for(String key : paramMap.keySet()) {
+			for(String key : paramsMap.keySet()) {
 				builder.append("&")
 				.append(key)
 				.append("=")
-				.append(paramMap.get(key));
+				.append(paramsMap.get(key));
 			}
 			return builder.deleteCharAt(0).toString();
 		}
 		return "";
+	}
+	
+	/**
+	 * 是否是POST请求
+	 * @param requestMethod
+	 * @return
+	 */
+	private static boolean isPost(String requestMethod) {
+		return requestMethod != null && !"".equals(requestMethod) && POST.equals(requestMethod);
 	}
 	
 }
