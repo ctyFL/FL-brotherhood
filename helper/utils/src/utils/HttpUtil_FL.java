@@ -15,8 +15,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Map;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 /**
  * 
  * Http工具类
