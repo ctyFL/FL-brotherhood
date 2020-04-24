@@ -159,7 +159,7 @@ public class HttpUtil_FL {
 	
 	/**
 	 * HttpGet请求
-	 * @param paramMap
+	 * @param paramsMap
 	 * @param url
 	 */
 	private static void HttpGet(Map<String, String> paramsMap, String url) {
@@ -184,7 +184,7 @@ public class HttpUtil_FL {
 	
 	/**
 	 * HttpPost请求
-	 * @param paramMap
+	 * @param paramsMap
 	 * @param url
 	 */
 	private static void HttpPost(Map<String, String> paramsMap, String url) {
@@ -259,7 +259,7 @@ public class HttpUtil_FL {
 	
 	/**
 	 * 解析参数map
-	 * @param paramMap
+	 * @param paramsMap
 	 * @return
 	 */
 	private static String getParamString(Map<String, String> paramsMap) {
