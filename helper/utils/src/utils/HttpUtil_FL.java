@@ -84,7 +84,7 @@ public class HttpUtil_FL {
 	 * @param filePath
 	 * @param url
 	 */
-	private static String uploadPost(String filePath, String url) {
+	public static String uploadPost(String filePath, String url) {
 		DataOutputStream out = null;
 		DataInputStream in = null;
 		String result = "";
@@ -163,7 +163,7 @@ public class HttpUtil_FL {
 	 * @param paramsMap
 	 * @param url
 	 */
-	private static String HttpGet(Map<String, String> paramsMap, String url) {
+	public static String HttpGet(Map<String, String> paramsMap, String url) {
 		url = url + "?" + getParamString(paramsMap);
 		String result = "";
 		HttpURLConnection conn = null;
@@ -189,7 +189,7 @@ public class HttpUtil_FL {
 	 * @param paramsMap
 	 * @param url
 	 */
-	private static String HttpPost(Map<String, String> paramsMap, String url) {
+	public static String HttpPost(Map<String, String> paramsMap, String url) {
 		HttpURLConnection conn = null;
 		PrintWriter writer = null;
 		String result = "";
