@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +39,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	private String savepath_father = "";
 	private String savepath = "";
 	private FileItem fileItem = null; 
+	private String oldName = "";
 	private String fileFormat = "";
  	
     public ReceiveFileServlet() {
@@ -87,7 +90,7 @@ public class ReceiveFileServlet extends HttpServlet {
 	private void saveFile(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
 		createSavePath();
 		InputStream in = fileItem.getInputStream();
-		String newFileName = createNewFileName();
+		String newFileName = getOldFileName();
 		File newFile = new File(savepath, newFileName);
 		FileOutputStream out = new FileOutputStream(newFile);
 		byte[] bytes = new byte[1024];
@@ -117,6 +120,7 @@ public class ReceiveFileServlet extends HttpServlet {
 					params.put(name, value);
 				}else {
 					fileItem = item;
+					oldName = item.getName();
 					parseFileFormat(item.getName());
 				}
 			}
@@ -126,10 +130,28 @@ public class ReceiveFileServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 创建随机新文件名
+	 * 返回原文件名
 	 * @return
 	 */
-	private String createNewFileName() {
+	private String getOldFileName() {
+		return oldName;
+	}
+	
+	/**
+	 * 创建新文件名（当前日期+时间毫秒数字符串）
+	 * @return
+	 */
+	private String createNewFileNameByNowDateStr() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date date = new Date();
+		return sdf.format(date) + System.currentTimeMillis() + fileFormat;
+	}
+	
+	/**
+	 * 创建随机新文件名（随机UUID）
+	 * @return
+	 */
+	private String createNewFileNameByUUID() {
 		return UUID.randomUUID().toString().replace("-", "") + fileFormat;
 	}
 	
