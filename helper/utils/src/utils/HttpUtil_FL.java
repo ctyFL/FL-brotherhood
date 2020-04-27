@@ -84,7 +84,7 @@ public class HttpUtil_FL {
 	 * @param filePath
 	 * @param url
 	 */
-	public static String uploadPost(String filePath, String url) {
+	private static void uploadPost(String filePath, String url) {
 		DataOutputStream out = null;
 		DataInputStream in = null;
 		String result = "";
@@ -155,7 +155,6 @@ public class HttpUtil_FL {
 			}
 		}
 		System.out.println("result：" + result);
-		return result;
 	}
 	
 	/**
@@ -163,7 +162,7 @@ public class HttpUtil_FL {
 	 * @param paramsMap
 	 * @param url
 	 */
-	public static String HttpGet(Map<String, String> paramsMap, String url) {
+	private static void HttpGet(Map<String, String> paramsMap, String url) {
 		url = url + "?" + getParamString(paramsMap);
 		String result = "";
 		HttpURLConnection conn = null;
@@ -181,7 +180,6 @@ public class HttpUtil_FL {
 			}
 		}
 		System.out.println("result：" + result);
-		return result;
 	}
 	
 	/**
@@ -189,7 +187,7 @@ public class HttpUtil_FL {
 	 * @param paramsMap
 	 * @param url
 	 */
-	public static String HttpPost(Map<String, String> paramsMap, String url) {
+	private static void HttpPost(Map<String, String> paramsMap, String url) {
 		HttpURLConnection conn = null;
 		PrintWriter writer = null;
 		String result = "";
@@ -211,7 +209,6 @@ public class HttpUtil_FL {
 			}
 		}
 		System.out.println("result：" + result);
-		return result;
 	}
 	
 	/**
