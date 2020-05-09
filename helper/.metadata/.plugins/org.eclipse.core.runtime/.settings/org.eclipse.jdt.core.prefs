@@ -6,3 +6,4 @@ org.eclipse.jdt.core.compiler.compliance=1.8
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.source=1.8
+org.eclipse.jdt.core.userLibrary.Apache\ POI=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<userlibrary systemlibrary\="false" version\="2">\r\n\t<archive path\="C\:/Users/cty/Desktop/poi-4.1.2/poi-4.1.2.jar"/>\r\n\t<archive path\="C\:/Users/cty/Desktop/poi-4.1.2/poi-ooxml-4.1.2.jar"/>\r\n\t<archive path\="C\:/Users/cty/Desktop/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>\r\n\t<archive path\="C\:/Users/cty/Desktop/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>\r\n</userlibrary>\r\n
