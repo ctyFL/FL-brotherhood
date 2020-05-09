@@ -35,15 +35,11 @@ public class ExcelUtil_FL {
 	public static final String EXCEL_XLS = "xls";
 
 	public static void readXlsxExcelByPOI(String filePath) {
-		String sql = "";
-		String sql1 = "";
-		String sql2 = "";
-		String sql3 = "";
-		String sql4 = "";
 		if(!FileUtil_FL.isExists(filePath)) {
 			return;
 		}
 		try {
+			String sql = "";
 			XSSFWorkbook wb = (XSSFWorkbook) openWorkBook(filePath, EXCEL_XLSX);
 			XSSFSheet sheet = wb.getSheetAt(0);
 			XSSFRow row = sheet.getRow(0);
@@ -73,39 +69,8 @@ public class ExcelUtil_FL {
 						+ " inner join PropRoomCustomerDetail b on a.ID = b.PROPCUSTOMER_ID "
 						+ " inner join PropRoom c on c.ID = b.PROPROOM_ID "
 						+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
-				
-				sql1 +=  "update PropCustomer set "
-						+ " TELEPHONE='" + telePhone + "'"
-						+ " where ID=(select a.ID from PropCustomer a "
-						+ " inner join PropRoomCustomerDetail b on a.ID = b.PROPCUSTOMER_ID "
-						+ " inner join PropRoom c on c.ID = b.PROPROOM_ID "
-						+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
-				
-				sql2 += "update PropCustomer set "
-						+ " IDNO='" + idNo + "'"
-						+ " where ID=(select a.ID from PropCustomer a "
-						+ " inner join PropRoomCustomerDetail b on a.ID = b.PROPCUSTOMER_ID "
-						+ " inner join PropRoom c on c.ID = b.PROPROOM_ID "
-						+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
-				
-				sql3 += "update PropCustomer set "
-						+ " MANAGENO='" + manageNo + "' "
-						+ " where ID=(select a.ID from PropCustomer a "
-						+ " inner join PropRoomCustomerDetail b on a.ID = b.PROPCUSTOMER_ID "
-						+ " inner join PropRoom c on c.ID = b.PROPROOM_ID "
-						+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
-				
-//				if(sql4.equals("")) {
-//					sql4 += "'" + customer + "'";
-//				}else {
-//					sql4 += ",'" + customer + "'";
-//				}
 			}
-			
 			FileUtil_FL.createNewTxtFile("E:/", "log1", sql);
-			PrintStream ps = new PrintStream("E:/log.txt"); 
-			System.setOut(ps);
-			System.out.println(sql1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
