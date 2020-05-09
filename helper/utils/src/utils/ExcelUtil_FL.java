@@ -40,15 +40,15 @@ public class ExcelUtil_FL {
 			String sql = "";
 			XSSFWorkbook wb = (XSSFWorkbook) openWorkBook(filePath, EXCEL_XLSX);
 			XSSFSheet sheet = wb.getSheetAt(0);
-			XSSFRow row = sheet.getRow(0);
+			XSSFRow firstRow = sheet.getRow(0);
 			int rowsOfSheet = sheet.getPhysicalNumberOfRows();
 			for(int i=1; i<rowsOfSheet; i++) {
-				XSSFRow rowc = sheet.getRow(i);
-				XSSFCell roomNoCell = rowc.getCell(2);
-				XSSFCell customerCell = rowc.getCell(3);
-				XSSFCell telePhoneCell = rowc.getCell(4);
-				XSSFCell idNoCell = rowc.getCell(5);
-				XSSFCell manageNoCell = rowc.getCell(6);
+				XSSFRow row = sheet.getRow(i);
+				XSSFCell roomNoCell = row.getCell(2);
+				XSSFCell customerCell = row.getCell(3);
+				XSSFCell telePhoneCell = row.getCell(4);
+				XSSFCell idNoCell = row.getCell(5);
+				XSSFCell manageNoCell = row.getCell(6);
 				
 				roomNoCell.setCellType(CellType.STRING);
 				customerCell.setCellType(CellType.STRING);
