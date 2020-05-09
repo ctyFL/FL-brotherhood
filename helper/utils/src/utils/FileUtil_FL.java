@@ -1,6 +1,10 @@
 package utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 
@@ -44,6 +48,63 @@ public class FileUtil_FL {
 			return file.delete();
 		}
 		return false;
+	}
+	
+	/**
+	 * 在目标路径创建一个新的txt文件，并写入内容
+	 * @param filePath
+	 * @param textContent
+	 */
+	public static void createNewTxtFile(String rootPath, String fileName, String textContent) {
+		String format = "txt";
+		FileOutputStream fos = null;
+		PrintWriter pw = null;
+		if(createNewFile(rootPath, fileName, format)) {
+			File file = new File(rootPath + fileName + "." + format);
+			try {
+				fos = new FileOutputStream(file);
+				StringBuffer buf = new StringBuffer();
+				buf.append(textContent);
+				pw = new PrintWriter(fos);
+				pw.write(buf.toString().toCharArray());
+				pw.flush();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if(pw != null) {
+					pw.close();
+				}
+				if(fos != null) {
+					try {
+						fos.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 在目标路径创建一个指定格式的文件
+	 * @param rootPath
+	 * @param fileName
+	 * @param format
+	 */
+	public static boolean createNewFile(String rootPath, String fileName, String format) {
+		boolean flag = false;
+		String filePath = rootPath + fileName + "." + format;
+		File file = new File(filePath);
+		try {
+			if(!file.exists()) {
+				file.createNewFile();
+				flag = true;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
 }
