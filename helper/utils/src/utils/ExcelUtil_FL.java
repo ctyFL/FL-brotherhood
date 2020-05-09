@@ -2,7 +2,11 @@ package utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -21,14 +25,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @version 1.0
  */
 public class ExcelUtil_FL {
+	
+	public static final String EXCEL_XLSX = "xlsx";
+	public static final String EXCEL_XLS = "xls";
 
 	public static void readXlsxExcelByPOI(String filePath) {
 		if(!FileUtil_FL.isExists(filePath)) {
 			return;
 		}
 		try {
-			FileInputStream fis = new FileInputStream(new File(filePath));
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFWorkbook wb = (XSSFWorkbook) openWorkBook(filePath, EXCEL_XLSX);
 			XSSFSheet sheet = wb.getSheetAt(0);
 			
 		} catch (Exception e) {
@@ -36,4 +42,24 @@ public class ExcelUtil_FL {
 		}
 	}
 	
+	/**
+	 * 根据路径返回xlsx或是xls的文档对象
+	 * @param filePath
+	 * @param type
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public static Workbook openWorkBook(String filePath, String type) throws FileNotFoundException, IOException {
+		Workbook workbook = null;
+		if(FileUtil_FL.isExists(filePath)) {
+			FileInputStream fis = new FileInputStream(new File(filePath));
+			if(EXCEL_XLSX.equals(type)) {
+				workbook = new XSSFWorkbook(fis);
+			}else if(EXCEL_XLS.equals(type)) {
+				workbook = new HSSFWorkbook(fis);
+			}
+		}
+		return workbook;
+	}
 }
