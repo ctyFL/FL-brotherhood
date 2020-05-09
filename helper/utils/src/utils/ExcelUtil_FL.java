@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  * Excel表格工具类
  * 需要引入Apache POI jar包
- * 总结：按照需要导入jar包及相关依赖jar包。
+ * 按照需要导入jar包及相关依赖jar包。
  * poi-4.1.2.jar  (excel文件生成需要)
  * poi-examples-4.1.2.jar(官方示例，开发不需要) 
  * poi-excelant-4.1.2.jar(不需要)
