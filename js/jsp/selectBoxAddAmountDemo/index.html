@@ -334,7 +334,8 @@
 			
 			<div class="bd">
 				<div class="weui_cells_title" style="margin-bottom: 20px;margin-top: 15px;">待缴费用（单位：元）如下：</div>
-<!----费用开始----->				
+<!----费用开始----->	
+			
 <!------------------/*物业管理费*/-->
 				<p><strong>&nbsp;&nbsp;&nbsp;物业管理费</strong></p>
 <!-------------------------------/*2020年物业管理费*/-->
@@ -351,12 +352,14 @@
 						</div>
 					</li>	
 				</ul>
-<!---------------------------------------------------/*2020年1月物业管理费*/-->
 				<div id="checkbox2020物业管理费" class="weui_cells weui_cells_checkbox" style="display: none;">
+<!---------------------------------------------------/*2020年1月物业管理费*/-->	
+					<!--chargeid为账单唯一标识，id='s1'+chargeid，value="chargeid,219.6（金额）"-->
 					<label class="weui_cell weui_check_label" for="s11">
 						<div class="weui_cell_hd">
-							<!--chargeid为账单唯一标识，id='s1'+chargeid，value="chargeid,219.6（金额）"-->
-							<input type="checkbox" class="weui_check" name="checkboxOnName" chargeNameAndDate="物业管理费2020-01" year="2020" chargeName="物业管理费" chargeid="1" id="s11" value="1,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="物业管理费2020-01" year="2020" chargeName="物业管理费" 
+							 chargeid="1" id="s11" value="1,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
 							<i class="weui_icon_checked"></i>
 						</div>
 						<div class="weui_cell_bd weui_cell_primary">
@@ -364,10 +367,158 @@
 							<p class="p_right">219.60</p>
 						</div>
 					</label>
+<!---------------------------------------------------/*2020年2月物业管理费*/-->
+					<label class="weui_cell weui_check_label" for="s12">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="物业管理费2020-02" year="2020" chargeName="物业管理费" 
+							 chargeid="2" id="s12" value="2,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2020-02</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>
+<!---------------------------------------------------/*2020年3月物业管理费*/-->
+					<label class="weui_cell weui_check_label" for="s13">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="物业管理费2020-03" year="2020" chargeName="物业管理费" 
+							 chargeid="3" id="s13" value="2,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2020-03</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>											
 				</div>
-			</div>
+<!-------------------------------/*2020年物业管理费结束*/-->
+<!-------------------------------/*2019年物业管理费*/-->
+				<ul class="collapse">
+					<li>
+						<i class="icon icon-19 f22" id="icon2019物业管理费" onclick="onSelectAll('2019,物业管理费')" style="margin-top: 11px;margin-left: 10px;color: gray;">
+							&nbsp;<font id="yearFont2019物业管理费" style="font-size: 16px;color: black;">2019</font>
+						</i>
+						<div class="weui-flex js-category" style="width: 65%;float: right;" id="2019物业管理费" value="2019,物业管理费" onclick="onShow(this)">
+							<div class="weui-flex__item" style="width:95%"></div>
+							<p id="u2019物业管理费" style="display:none;margin-right:5px;">￥</p>
+							<font id="jine2019物业管理费" name="yearChargeNameJine" style="color: green;display: none;margin-right: 37px;	">0.00</font>
+							<i id="i2019物业管理费" class="icon icon-74"></i>
+						</div>
+					</li>	
+				</ul>
+				<div id="checkbox2019物业管理费" class="weui_cells weui_cells_checkbox" style="display: none;">
+<!---------------------------------------------------/*2019年1月物业管理费*/-->	
+					<!--chargeid为账单唯一标识，id='s1'+chargeid，value="chargeid,219.6（金额）"-->
+					<label class="weui_cell weui_check_label" for="s14">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="物业管理费2019-01" year="2019" chargeName="物业管理费" 
+							 chargeid="4" id="s14" value="4,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2019-01</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>
+<!---------------------------------------------------/*2019年2月物业管理费*/-->
+					<label class="weui_cell weui_check_label" for="s15">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="物业管理费2019-02" year="2019" chargeName="物业管理费" 
+							 chargeid="5" id="s15" value="5,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2019-02</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>
+<!---------------------------------------------------/*2019年3月物业管理费*/-->
+					<label class="weui_cell weui_check_label" for="s16">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="物业管理费2019-03" year="2019" chargeName="物业管理费" 
+							 chargeid="6" id="s16" value="6,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2019-03</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>											
+				</div>
+<!-------------------------------/*2019年物业管理费结束*/-->
+<!------------------/*物业管理费结束*/-->
+<!------------------/*地面停车费*/-->
+				<p><strong>&nbsp;&nbsp;&nbsp;地面停车费</strong></p>
+<!-------------------------------/*2020年地面停车费*/-->
+				<ul class="collapse">
+					<li>
+						<i class="icon icon-19 f22" id="icon2020地面停车费" onclick="onSelectAll('2020,地面停车费')" style="margin-top: 11px;margin-left: 10px;color: gray;">
+							&nbsp;<font id="yearFont2020地面停车费" style="font-size: 16px;color: black;">2020</font>
+						</i>
+						<div class="weui-flex js-category" style="width: 65%;float: right;" id="2020地面停车费" value="2020,地面停车费" onclick="onShow(this)">
+							<div class="weui-flex__item" style="width:95%"></div>
+							<p id="u2020地面停车费" style="display:none;margin-right:5px;">￥</p>
+							<font id="jine2020地面停车费" name="yearChargeNameJine" style="color: green;display: none;margin-right: 37px;	">0.00</font>
+							<i id="i2020地面停车费" class="icon icon-74"></i>
+						</div>
+					</li>	
+				</ul>
+				<div id="checkbox2020地面停车费" class="weui_cells weui_cells_checkbox" style="display: none;">
+<!---------------------------------------------------/*2020年1月地面停车费*/-->	
+					<!--chargeid为账单唯一标识，id='s1'+chargeid，value="chargeid,219.6（金额）"-->
+					<label class="weui_cell weui_check_label" for="s17">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="地面停车费2020-01" year="2020" chargeName="地面停车费" 
+							 chargeid="7" id="s17" value="1,219.6" onclick="theSumOfOnName(this,'地面停车费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2020-01</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>
+<!---------------------------------------------------/*2020年2月地面停车费*/-->
+					<label class="weui_cell weui_check_label" for="s18">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="地面停车费2020-02" year="2020" chargeName="地面停车费" 
+							 chargeid="8" id="s18" value="2,219.6" onclick="theSumOfOnName(this,'地面停车费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2020-02</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>
+<!---------------------------------------------------/*2020年3月地面停车费*/-->
+					<label class="weui_cell weui_check_label" for="s19">
+						<div class="weui_cell_hd">
+							<input type="checkbox" class="weui_check" name="checkboxOnName" 
+							 chargeNameAndDate="地面停车费2020-03" year="2020" chargeName="地面停车费" 
+							 chargeid="9" id="s19" value="9,219.6" onclick="theSumOfOnName(this,'地面停车费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2020-03</p> 
+							<p class="p_right">219.60</p>
+						</div>
+					</label>											
+				</div>
+<!-------------------------------/*2020年地面停车费结束*/-->
+
 <!----费用结束----->	
-			
+				<div class="bd spacing"  id="aaa" style="height: 150px;">
+					<p></p>
+				</div> 
+			</div>
+				
 			<div class="weui_cells"  id="footer" style="height: 120px;width: 100%;text-align: center">
 				<a href="javascript:;" class="weui_btn_dialog default" align="center" style="display:inline-block;float:left;padding-top:10px;width:50%;">
 					合计：￥<font id="jine" style="color: #F79685">0.00</font>元
@@ -375,7 +526,7 @@
 				<a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary btn" align="center" style="display:inline-block;float:left;margin-top:9px;margin-left:51px;width:25%;background-color:#2597EC;" id="payButton">付款</a>
 				<input type="hidden" name="totalAmount" id="totalAmount" value="0">
 			</div>
+			
 		</div>
-		
 	</body>
 </html>
