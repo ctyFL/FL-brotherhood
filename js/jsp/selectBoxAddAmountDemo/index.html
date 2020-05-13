@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>在线缴费</title>
+		<link rel="stylesheet" href="./css/weui/weui.css" />
+		<link rel="stylesheet" href="./css/weui/weuix.css" />
+		<link rel="stylesheet" href="./css/weui/myapp.css" />
+		<style type="text/css">
+				#footer{position:fixed;bottom:0px;width: 90%;}
+				.p_left{float:left;}
+				.p_right{float:right;}
+		</style>
+		<script src="./js/weui/zepto.min.js"></script>
+		<script src="./js/weui/myapp.js"></script>
+		<script>
+			function onSelectAll(yearAndChargeName){
+				var yearAndChargeNameArr = yearAndChargeName.split(",");
+				var year = yearAndChargeNameArr[0];
+				var chargeName = yearAndChargeNameArr[1];
+				var checkStatus = getCheckedStatus(year, chargeName);
+				setCSSofCheck(checkStatus, year, chargeName);
+				setAmountAndChecked(checkStatus, year, chargeName);
+			}
+			
+			function onShow(item){
+				var id = "checkbox" + item.id;
+				var checkList = document.getElementById(id);
+				var i = document.getElementById("i" + item.id);
+				var year = item.getAttribute("value").split(",")[0];
+				var chargeName = item.getAttribute("value").split(",")[1];
+				var checkbox = document.getElementsByName("checkboxOnName");
+				var yearMoneySum = parseFloat(document.getElementById(("jine" + year + chargeName)).innerHTML);
+				var sum = parseFloat(document.getElementById("jine").innerHTML);
+				
+				if(checkList.style.display == "none"){
+					checkList.style.display = "";
+					i.setAttribute("class", "icon icon-35");	
+					var checkStatus = getCheckedStatus(year, chargeName);
+					if(checkStatus == "allUnChecked"){
+						for(i=0; i<checkbox.length; i++){
+							var amount = checkbox[i].getAttribute("amount");
+							var _chargeName = checkbox[i].getAttribute("chargeName");
+							var _year = checkbox[i].getAttribute("year");
+								if(_year == year && _chargeName == chargeName){
+									checkbox[i].checked = "true";
+									sum += parseFloat(amount);
+									yearMoneySum += parseFloat(amount);
+								}
+						}
+						setCSSofCheck(checkStatus, year, chargeName);
+						}else if(checkStatus == "unAllChecked"){
+							for(i=0; i<checkbox.length; i++){
+								var amount = checkbox[i].getAttribute("amount");
+								var _chargeName = checkbox[i].getAttribute("chargeName");
+								var _year = checkbox[i].getAttribute("year");
+									if(_year == year && _chargeName == chargeName){
+										if(!checkbox[i].checked){
+											checkbox[i].checked = "true";
+											sum += parseFloat(amount);
+											yearMoneySum += parseFloat(amount);
+										}
+									}
+							}
+							setCSSofCheck(checkStatus, year, chargeName);
+						}
+								
+						if(yearMoneySum > 0){
+							document.getElementById("jine" + year + chargeName).style.display="";
+							document.getElementById("u" + year + chargeName).style.display="";
+						}else{
+							document.getElementById("jine" + year + chargeName).style.display="none";
+							document.getElementById("u" + year + chargeName).style.display="none";
+						}
+						yearMoneySum = yearMoneySum.toFixed(2);
+						document.getElementById("jine" + year + chargeName).innerHTML = " " + yearMoneySum;
+						sum = sum.toFixed(2);
+						document.getElementById("jine").innerHTML = " " + sum;
+						document.getElementById("totalAmount").value=sum;
+				}else{
+					checkList.style.display = "none";
+					i.setAttribute("class", "icon icon-74");
+				}		
+			}
+			
+			//获得该费用名称和年份下的选中状态
+			function getCheckedStatus(year, chargeName){
+				var checkbox = document.getElementsByName("checkboxOnName");
+				var chargeCount = 0;
+				var checkedCount = 0;
+				var un_checkedCount = 0;
+				for(i=0; i<checkbox.length; i++){
+					var _chargeName = checkbox[i].getAttribute("chargeName");
+					var _year = checkbox[i].getAttribute("year");
+					if(_chargeName == chargeName && _year == year){
+						chargeCount ++;
+					}
+					if(_chargeName == chargeName && _year == year && checkbox[i].checked){
+						checkedCount ++;
+					}
+					if(_chargeName == chargeName && _year == year && !checkbox[i].checked){
+						un_checkedCount ++;
+					}
+				}
+				if(checkedCount == chargeCount){
+					return "allChecked";//全选
+				}else if(un_checkedCount == chargeCount){
+					return "allUnChecked";//全未选
+				}else{
+					return "unAllChecked";//未全选
+				}
+			}
+			
+			function setCSSofCheck(checkStatus, year, chargeName){
+				var icon = document.getElementById("icon" + year + chargeName);
+				var font = document.getElementById("yearFont" + year + chargeName);
+						
+				if(checkStatus == "allChecked"){//全选
+					icon.setAttribute("class", "icon icon-19 f22");
+					icon.setAttribute("style", "margin-top:11px;margin-left:10px;color:gray;");
+				}else{//未全选 或 全未选
+					icon.setAttribute("class", "icon icon-18 f22");
+					icon.setAttribute("style", "margin-top:11px;margin-left:10px;color:#09BB07;");
+				}
+				font.setAttribute("style", "font-size:16px;color:black;");
+			}
+			
+			function setAmountAndChecked(checkStatus, year, chargeName){
+				var checkbox = document.getElementsByName("checkboxOnName");
+				var yearMoneySum = parseFloat(document.getElementById("jine" + year + chargeName).innerHTML);
+				var sum = parseFloat(document.getElementById("jine").innerHTML);
+				if(checkStatus == "allChecked"){
+					for(i=0; i<checkbox.length; i++){
+						var amount = checkbox[i].getAttribute("amount");
+						var _chargeName = checkbox[i].getAttribute("chargeName");
+						var _year = checkbox[i].getAttribute("year");
+						if(_year == year && _chargeName == chargeName){
+							checkbox[i].checked = "";
+							sum -= parseFloat(amount);
+							sum = parseFloat(sum.toFixed(2));
+							yearMoneySum -= parseFloat(amount);	
+							yearMoneySum = parseFloat(yearMoneySum.toFixed(2));
+						}
+					}
+				}else if(checkStatus == "allUnChecked"){
+					for(i=0; i<checkbox.length; i++){
+						var amount = checkbox[i].getAttribute("amount");
+						var _chargeName = checkbox[i].getAttribute("chargeName");
+						var _year = checkbox[i].getAttribute("year");
+						if(_year == year && _chargeName == chargeName){
+							checkbox[i].checked = "true";
+							sum += parseFloat(amount);
+							sum = parseFloat(sum.toFixed(2));
+							yearMoneySum += parseFloat(amount);
+							yearMoneySum = parseFloat(yearMoneySum.toFixed(2));
+						}
+					}
+				}else{
+					for(i=0; i<checkbox.length; i++){
+						var amount = checkbox[i].getAttribute("amount");
+						var _chargeName = checkbox[i].getAttribute("chargeName");
+						var _year = checkbox[i].getAttribute("year");
+						if(_year == year && _chargeName == chargeName){
+							if(!checkbox[i].checked){
+								checkbox[i].checked = "true";
+								sum += parseFloat(amount);
+								sum = parseFloat(sum.toFixed(2));
+								yearMoneySum += parseFloat(amount);
+								yearMoneySum = parseFloat(yearMoneySum.toFixed(2));
+							}
+						}
+					}
+				}
+						
+				sum = sum.toFixed(2);
+				yearMoneySum = yearMoneySum.toFixed(2);
+				if(yearMoneySum > 0.00){
+					document.getElementById("jine" + year + chargeName).style.display="";
+					document.getElementById("u" + year + chargeName).style.display="";
+				}else{
+					document.getElementById("jine" + year + chargeName).style.display="none";
+					document.getElementById("u" + year + chargeName).style.display="none";
+				}
+				document.getElementById("jine" + year + chargeName).innerHTML = " " + yearMoneySum;
+				document.getElementById("jine").innerHTML = " " + sum;
+				document.getElementById("totalAmount").value=sum;
+			}
+			
+			$(function(){ 
+				var yearMoneySum = document.getElementsByName("yearChargeNameJine");
+				var sum = 0.00;
+				sum = sum.toFixed(2);
+				for(i=0; i<yearMoneySum.length; i++){
+					yearMoneySum.innerHTML= " " + sum;
+				}
+				document.getElementById("jine").innerHTML = " " + sum;
+				document.getElementById("totalAmount").value = sum;
+					
+				var checkbox = document.getElementsByName("checkboxOnName");
+				for(i=0; i<checkbox.length; i++){
+					checkbox[i].checked = "";
+				}
+			});
+			
+			function theSumOf(obj,chargeName){
+				var money = document.getElementsByName("checkbox1");
+				var moneyarr = money.length;
+				var moneydata = "";
+				var sum = 0;			
+				var chargedate=obj.getAttribute("chargedate");
+				var monthId="month"+chargedate;
+				var monthChecked=document.getElementById(monthId);
+						
+				var res = false;
+				if(chargeName!=""){	//垃圾费222
+					res = true;
+				}
+						
+				if(!res){
+					monthChecked.checked=obj.checked;
+				}
+						
+				if(obj.checked==true){
+					monthChecked.checked=obj.checked;
+				}
+						
+				if(obj.checked==false){
+					monthChecked.checked=obj.checked;
+				}
+						
+				var checknum = 0;
+						
+				for(i=0; i<moneyarr; i++){
+					var _chargedate=money[i].getAttribute("chargedate");
+					if(chargedate==_chargedate && !res){
+						money[i].checked=obj.checked;
+					}
+							
+					if(money[i].checked==true && chargedate==_chargedate){
+						checknum++;
+					}
+							
+					if(money[i].checked){
+						moneydata = money[i].value;
+						var jine = moneydata.split(",");
+						sum += parseFloat(jine[1]);
+						//jine[0]表ID, jine[1]要缴费的金额					
+					}
+				}	
+						
+				if(checknum>0 && res && obj.checked==false){
+					monthChecked.checked=true;
+				}
+						
+				sum = sum.toFixed(2);
+				//alert(sum);
+				document.getElementById("totalAmount").value=sum;
+				document.getElementById("jine").innerHTML=" "+sum;
+			}
+					
+			function theSumOfOnName(obj,chargeName){
+				var money = document.getElementsByName("checkboxOnName");
+				var moneyarr = money.length;
+				var moneydata = "";
+				var sum = 0;
+				var year = obj.getAttribute("year");
+				var chargeNameAndDate = obj.getAttribute("chargeNameAndDate");
+				var yearMoneySum = parseFloat(document.getElementById("jine" + year + chargeName).innerHTML);
+				var icon = document.getElementById("icon" + year + chargeName);
+				var chargeCount = 0;
+				var checkedCount = 0;
+			
+				if(obj.checked){
+					var jine = obj.value.split(",");
+					yearMoneySum += parseFloat(jine[1]);
+				}else{
+					var jine = obj.value.split(",");
+					yearMoneySum -= parseFloat(jine[1]);
+				}
+				yearMoneySum = yearMoneySum.toFixed(2);
+						
+				for(i=0; i<moneyarr; i++){
+					var _chargeNameAndDate = money[i].getAttribute("chargeNameAndDate");
+					var _year = money[i].getAttribute("year");
+					var _chargeName = money[i].getAttribute("chargeName");
+					if(_chargeNameAndDate == chargeNameAndDate){
+						money[i].checked=obj.checked;
+					}
+							
+					if(money[i].checked){
+						moneydata = money[i].value;
+						var jine = moneydata.split(",");
+						sum += parseFloat(jine[1]);
+						//jine[0]表ID, jine[1]要缴费的金额					
+					}
+							
+					if(_year == year && _chargeName == chargeName){
+						chargeCount ++;
+						if(money[i].checked){
+							checkedCount ++;
+						}
+					}
+				}
+			
+				if(checkedCount == chargeCount){
+					icon.setAttribute("class", "icon icon-18 f22");
+					icon.setAttribute("style", "margin-top:11px;margin-left:10px;color:#09BB07;");
+				}else{
+					icon.setAttribute("class", "icon icon-19 f22");
+					icon.setAttribute("style", "margin-top:11px;margin-left:10px;color:gray;");
+				}
+			
+				if(yearMoneySum > 0){
+					document.getElementById("jine" + year + chargeName).style.display="";
+					document.getElementById("u" + year + chargeName).style.display="";
+				}else{
+					document.getElementById("jine" + year + chargeName).style.display="none";
+					document.getElementById("u" + year + chargeName).style.display="none";
+				}
+						
+				sum = sum.toFixed(2);
+				//alert(sum);
+				document.getElementById("totalAmount").value=sum;
+				document.getElementById("jine" + year + chargeName).innerHTML=" " + yearMoneySum;
+				document.getElementById("jine").innerHTML=" "+sum;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="page">
+			
+			<div class="bd">
+				<div class="weui_cells_title" style="margin-bottom: 20px;margin-top: 15px;">待缴费用（单位：元）如下：</div>
+				
+<!------------------/*物业管理费*/-->
+				<p><strong>&nbsp;&nbsp;&nbsp;物业管理费</strong></p>
+<!-------------------------------/*2020年物业管理费*/-->
+				<ul class="collapse">
+					<li>
+						<i class="icon icon-19 f22" id="icon2020物业管理费" onclick="onSelectAll('2020,物业管理费')" style="margin-top: 11px;margin-left: 11px;color: gray;">
+							&nbsp;<font id="yearFont2020物业管理费" style="font-size: 16px;color: black;">2020</font>
+						</i>
+						<div class="weui-flex js-category" style="width: 65%;float: right;" id="2020物业管理费" value="2020,物业管理费" onclick="onShow(this)">
+							<div class="weui-flex__item" style="95%"></div>
+							<p id="u2020物业管理费" style="display:none;margin-right:5px;">￥</p>
+							<font id="jine2020物业管理费" name="yearChargeNameJine" style="color: green;display: none;margin-right: 37px;	">0.00</font>
+							<i id="i2020物业管理费" class="icon icon-74"></i>
+						</div>
+					</li>	
+				</ul>
+<!---------------------------------------------------/*2020年1月物业管理费*/-->
+				<div id="checkbox2020物业管理费" class="weui_cells weui_cells_checkbox" style="display: none;">
+					<label class="weui_cell weui_check_label" for="s11">
+						<div class="weui_cell_hd">
+							<!--chargeid为账单唯一标识，id='s1'+chargeid，value="chargeid,219.6（金额）"-->
+							<input type="checkbox" class="weui_check" name="checkboxOnName" chargeNameAndDate="物业管理费2020-01" year="2020" chargeName="物业管理费" chargeid="1" id="s11" value="1,219.6" onclick="theSumOfOnName(this,'物业管理费')" amount="219.6" />
+							<i class="weui_icon_checked"></i>
+						</div>
+						<div class="weui_cell_bd weui_cell_primary">
+							<p class="p_left">2020-01</p> <p class="p_right">219.6</p>
+						</div>
+					</label>
+				</div>
+			</div>
+			
+			<div class="weui_cells"  id="footer" style="height: 120px;width: 100%;text-align: center">
+				<a href="javascript:;" class="weui_btn_dialog default" align="center" style="display:inline-block;float:left;padding-top:10px;width:50%;">
+					合计：￥<font id="jine" style="color: #F79685">0.00</font>元
+				</a>
+				<a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary btn" align="center" style="display:inline-block;float:left;margin-top:9px;margin-left:51px;width:25%;background-color:#2597EC;" id="payButton">付款</a>
+				<input type="hidden" name="totalAmount" id="totalAmount" value="0">
+			</div>
+		</div>
+		
+	</body>
+</html>
