@@ -73,13 +73,38 @@ public class AccessToken_FL {
 			return access_token;
 		}else {
 			String result = HttpUtil_FL.HttpGet(null, miniAppGetAcessTokenUrl);
-			
-			System.out.println(result);
+			//{"access_token":"33_n2sWB3oxoKsuEZdACs4naqdI0uMi7jF_CDVKkblsu7u4HCQ3sJ8C_iSPn3lIgbbzZDzaJs2XZ7gL6Ljrm8HBumSyqfE6XNSdjA6P8nQbDq-aHAqaFvCWZQ9rpNkiDLAodX9X-B7n2PDJsou3VCBdAFABIH","expires_in":7200}
+			if(isGetSuccess(result)) {
+				access_token = splitJsonStrToGet("access_token", result);
+				expires_in = Long.valueOf(splitJsonStrToGet("expires_in", result));
+				lastGetCurrentTime = System.currentTimeMillis();
+			}else {
+				access_token = "";
+			}
+			return access_token;
 		}
-		return access_token;
 	}
 	
 	public boolean isInAvailableTime() {
 		return System.currentTimeMillis() - lastGetCurrentTime < expires_in;
 	}
+	
+	private boolean isGetSuccess(String resultJsonStr) {
+		return resultJsonStr.indexOf("errcode") < 0 && resultJsonStr.indexOf("access_token") != -1;
+	}
+	
+	private String splitJsonStrToGet(String type, String resultJsonStr) {
+		String result = "";
+		resultJsonStr = resultJsonStr.replaceAll("{", "");
+		resultJsonStr = resultJsonStr.replaceAll("}", "");
+		resultJsonStr = resultJsonStr.replaceAll("\\\"", "");
+		String[] strs = resultJsonStr.split(":");
+		if("access_token".equals(type)) {
+			result = strs[1];
+		}else if("expires_in".equals(type)) {
+			result = strs[3];
+		}
+		return result;
+	}
+	
 }
