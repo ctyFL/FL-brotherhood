@@ -73,6 +73,7 @@ public class AccessToken_FL {
 			return access_token;
 		}else {
 			String result = HttpUtil_FL.HttpGet(null, miniAppGetAcessTokenUrl);
+			
 			System.out.println(result);
 		}
 		return access_token;

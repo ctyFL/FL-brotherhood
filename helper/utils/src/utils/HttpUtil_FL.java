@@ -49,6 +49,7 @@ public class HttpUtil_FL {
 	
 	/**
 	 * 创建一个POST请求线程
+	 * POST请求不能把参数直接拼在URL后，必须加入到paramsMap中
 	 * @param paramsMap
 	 * @param url
 	 */
@@ -163,7 +164,9 @@ public class HttpUtil_FL {
 	 * @param url
 	 */
 	public static String HttpGet(Map<String, String> paramsMap, String url) {
-		url = url + "?" + getParamString(paramsMap);
+		if(paramsMap != null && !paramsMap.isEmpty()) {
+			url = url + "?" + getParamString(paramsMap);
+		}
 		String result = "";
 		HttpURLConnection conn = null;
 		try {
@@ -185,6 +188,7 @@ public class HttpUtil_FL {
 	
 	/**
 	 * HttpPost请求
+	 * Post请求不能把参数直接拼在URL后，必须加入到paramsMap中
 	 * @param paramsMap
 	 * @param url
 	 */
