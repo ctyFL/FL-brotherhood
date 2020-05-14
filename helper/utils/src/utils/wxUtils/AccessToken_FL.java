@@ -72,7 +72,8 @@ public class AccessToken_FL {
 		if(!"".equals(access_token) && isInAvailableTime()) {
 			return access_token;
 		}else {
-			HttpUtil_FL.HttpGetThread(null, miniAppGetAcessTokenUrl);
+			String result = HttpUtil_FL.HttpGet(null, miniAppGetAcessTokenUrl);
+			System.out.println(result);
 		}
 		return access_token;
 	}
