@@ -37,7 +37,7 @@ public class TestMain {
 //		ExcelUtil_FL.readXlsxExcelByPOI("D:/22.xlsx");
 		
 		AccessToken_FL accessToken_FL = AccessToken_FL.getInstance();
-		accessToken_FL.getMiniAppAccessToken();
+		System.out.println(accessToken_FL.getMiniAppAccessToken());
 	}
 
 }

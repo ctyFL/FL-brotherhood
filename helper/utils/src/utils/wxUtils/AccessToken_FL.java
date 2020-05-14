@@ -95,9 +95,10 @@ public class AccessToken_FL {
 	
 	private String splitJsonStrToGet(String type, String resultJsonStr) {
 		String result = "";
-		resultJsonStr = resultJsonStr.replaceAll("{", "");
-		resultJsonStr = resultJsonStr.replaceAll("}", "");
+		resultJsonStr = resultJsonStr.replaceAll("\\{", "");
+		resultJsonStr = resultJsonStr.replaceAll("\\}", "");
 		resultJsonStr = resultJsonStr.replaceAll("\\\"", "");
+		resultJsonStr = resultJsonStr.replaceAll(",", ":");
 		String[] strs = resultJsonStr.split(":");
 		if("access_token".equals(type)) {
 			result = strs[1];
