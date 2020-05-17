@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="C:\Users\cty\Desktop\poi-4.1.2\lib" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="E:\gitHub\gitHubProject\FL-brotherhood\helper\utils\jar\poi-4.1.2\lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateQualifiedNames"/>
 		<item value="*" key="patterns"/>
@@ -29,9 +29,22 @@
 		<item value="600" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_WIDTH"/>
 		<item value="false" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_LOCATION"/>
 	</section>
+	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
+		<item value="763" key="DIALOG_WIDTH"/>
+		<item value="1|Microsoft YaHei UI|9.216|0|WINDOWS|1|-16|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
+		<item value="927" key="DIALOG_HEIGHT"/>
+		<item value="588" key="DIALOG_X_ORIGIN"/>
+		<item value="9" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="RefactoringWizard.preview">
 		<item value="600" key="width"/>
 		<item value="400" key="height"/>
+	</section>
+	<section name="SourceActionDialog.methods">
+		<item value="false" key="SynchronizedModifier"/>
+		<item value="false" key="Comments"/>
+		<item value="1" key="VisibilityModifier"/>
+		<item value="false" key="FinalModifier"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.preferences.EditTemplateDialog_dialogBounds">
 		<item value="813" key="DIALOG_WIDTH"/>
@@ -52,6 +65,10 @@
 		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="completion_proposal_size">
+	</section>
+	<section name="AddGetterSetterDialog">
+		<item value="false" key="SortOrdering"/>
+		<item value="false" key="RemoveFinal"/>
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
