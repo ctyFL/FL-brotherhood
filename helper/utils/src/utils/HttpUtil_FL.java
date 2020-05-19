@@ -58,7 +58,7 @@ public class HttpUtil_FL {
 			@Override
 			public void run() {
 				super.run();
-				HttpPost(paramsMap, url);
+				HttpPostByMapParam(paramsMap, url);
 			}
 		};
 		thread.start();
@@ -188,21 +188,35 @@ public class HttpUtil_FL {
 	
 	/**
 	 * HttpPost请求
-	 * Post请求不能把参数直接拼在URL后，必须加入到paramsMap中
-	 * @param paramsMap
+	 * @param jsonStr json格式字符窜
 	 * @param url
 	 */
-	public static String HttpPost(Map<String, String> paramsMap, String url) {
+	public static String HttpPostByJsonStrParam(String jsonStr, String url) {
+		return HttpPost(jsonStr, url);
+	}
+	
+	/**
+	 * HttpPost请求
+	 * @param paramsMap 将参数添加到map中
+	 * @param url
+	 */
+	public static String HttpPostByMapParam(Map<String, String> paramsMap, String url) {
+		String params = getParamString(paramsMap);
+		return HttpPost(params, url);
+	}
+	
+	/**
+	 * HttpPost请求
+	 * @param params 写入的参数
+	 * @param url
+	 */
+	public static String HttpPost(String params, String url) {
 		HttpURLConnection conn = null;
 		PrintWriter writer = null;
 		String result = "";
 		try {
 			URL postUrl = new URL(url);
 			conn = (HttpURLConnection) postUrl.openConnection();
-			//String params = getParamString(paramsMap);
-			//String params = "{\"touser\":\"oS2PU5KGHN_q8XX1Po5OJupi1qEM\",\"weapp_template_msg\":{\"template_id\":\"06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY\",\"page\":\"pages/index/index\",\"form_id\":\"123\",\"data\":{\"phrase1\":{\"value\":\"ds\"}},\"emphasis_keyword\":\"keyword.DATA\"},\"mp_template_msg\":{\"appid\":\"wx25b64fb13b03d43b\",\"template_id\":\"06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY\",\"url\":\"http://weixin.qq.com/download\",\"miniprogram\":{\"appid\":\"wx57b6c3f6da1c9a24\",\"pagepath\":\"pages/index/index\"},\"data\":{\"keyword\":{\"value\":\"df\"}}}}";
-			//String params = "{\"touser\":\"oS2PU5KGHN_q8XX1Po5OJupi1qEM\",\"msgtype\":\"text\",\"text\":{\"content\":\"rwx\"}}";
-			String params = "{\"touser\":\"oS2PU5KGHN_q8XX1Po5OJupi1qEM\",\"template_id\":\"06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY\",\"page\":\"pages/index/index\",\"data\":{\"date3\":{\"value\":\"2019-07-22 16:03:43\"},\"phrase1\":{\"value\":\"已派工\"}}}";
 			setHttpUrlConnection(conn, POST);
 	        conn.connect();
 	        writer = new PrintWriter(conn.getOutputStream());
