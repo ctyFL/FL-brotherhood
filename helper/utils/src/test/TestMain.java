@@ -1,14 +1,10 @@
 package test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import utils.DateUtil_FL;
 import utils.ExcelUtil_FL;
 import utils.FileUtil_FL;
 import utils.HttpUtil_FL;
 import utils.StringUtil_FL;
-import utils.wxUtils.AccessToken_FL;
 
 public class TestMain {
 
