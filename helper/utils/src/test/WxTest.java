@@ -33,8 +33,9 @@ public class WxTest {
 		paramsMap.put("phrase1", "已派工");
 		template.setData(paramsMap);
 		template.printParamJsonStr();
+		String jsonStr = template.toJsonStr();
 		/**post请求调用接口*/
-		String result = HttpUtil_FL.HttpPost(paramsMap, url);
+		String result = HttpUtil_FL.HttpPost(jsonStr, url);
 		
 		if(result.indexOf("\"errcode\":0") !=-1) {
 			System.out.println("发送成功");
