@@ -21,14 +21,22 @@ public class DateUtil_FL {
 	public static final int ONLY_MONTH = 1;
 	public static final int YEAR_SPLIT = 2;
 	public static final int MONTH_SPLIT = 3;
-	
+	/**日期格式类型Map*/
 	public static final Map<Integer, String> dateFormatTypeMap = new HashMap<Integer, String>(); 
+	/**2020.5*/
 	public static final int YYYY_POINT_MM = 0;
+	/**20200519*/
  	public static final int YYYYMMDD = 1;
+ 	/**2020-05-19*/
+ 	public static final int YYYY_MM_DD = 2;
+ 	/**2020-05-19 17:07:21*/
+ 	public static final int YYYY_MM_DDHHmmss = 3;
 	
 	static {
 		dateFormatTypeMap.put(YYYY_POINT_MM, "yyyy.MM");
 		dateFormatTypeMap.put(YYYYMMDD, "yyyyMMdd");
+		dateFormatTypeMap.put(YYYY_MM_DD, "yyyy-MM-dd");
+		dateFormatTypeMap.put(YYYY_MM_DDHHmmss, "yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**
