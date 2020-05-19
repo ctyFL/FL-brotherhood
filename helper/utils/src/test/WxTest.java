@@ -2,18 +2,21 @@ package test;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import utils.HttpUtil_FL;
 import utils.wxUtils.AccessToken_FL;
 
+/**
+ * 微信测试
+ * @author ctyFL
+ * @date 2020年5月19日
+ * @version 1.0
+ */
 public class WxTest {
 
 	public static void main(String[] args) {
 		
 		AccessToken_FL accessToken_FL = AccessToken_FL.getInstance();
 		String access_token = accessToken_FL.getMiniAppAccessToken();
-		System.out.println();
-		
 		String josnStr = "content=hello";
 		String url = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=" + access_token;
 		Map<String, String> paramsMap = new HashMap<String, String>();

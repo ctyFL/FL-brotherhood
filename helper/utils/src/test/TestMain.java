@@ -6,6 +6,12 @@ import utils.FileUtil_FL;
 import utils.HttpUtil_FL;
 import utils.StringUtil_FL;
 
+/**
+ * 工具类测试
+ * @author ctyFL
+ * @date 2020年5月19日
+ * @version 1.0
+ */
 public class TestMain {
 
 	public static void main(String[] args) {
