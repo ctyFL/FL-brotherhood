@@ -43,14 +43,15 @@ public class TestMain {
 		String access_token = accessToken_FL.getMiniAppAccessToken();
 		System.out.println();
 		
-		String josnStr = "{'content':'hello'}";
-		String url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + access_token;
+		String josnStr = "content=hello";
+		String url = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=" + access_token;
 		Map<String, String> paramsMap = new HashMap<String, String>();
-		paramsMap.put("touser", "oS2PU5LK8MoZ09gvhc8iTSoEnm_U");
-		paramsMap.put("msgtype", "text");
-		paramsMap.put("text", josnStr);
+		paramsMap.put("touser", "oS2PU5KGHN_q8XX1Po5OJupi1qEM");
+		paramsMap.put("mp_template_msg", "06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY");
+		paramsMap.put("data", "");
 		String result = HttpUtil_FL.HttpPost(paramsMap, url);
-		System.out.println(result);
+		//System.out.println(result);
+
 	}
 
 }

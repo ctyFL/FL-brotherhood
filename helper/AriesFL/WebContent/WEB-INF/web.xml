@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>AriesFL</display-name>
+  
+  <!-- 文件接收servlet -->
   <servlet>
     <servlet-name>ReceiveFileServlet</servlet-name>
     <servlet-class>servlet.ReceiveFileServlet</servlet-class>
@@ -17,4 +19,15 @@
     <servlet-name>ReceiveFileServlet</servlet-name>
     <url-pattern>/ReceiveFileServlet</url-pattern>
   </servlet-mapping>
+  
+  <!-- 微信测试servlet -->
+  <servlet>
+  	<servlet-name>WxTestServlet</servlet-name>
+  	<servlet-class>servlet.WxTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>WxTestServlet</servlet-name>
+  	<url-pattern>/WxTestServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

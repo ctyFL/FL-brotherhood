@@ -199,7 +199,10 @@ public class HttpUtil_FL {
 		try {
 			URL postUrl = new URL(url);
 			conn = (HttpURLConnection) postUrl.openConnection();
-			String params = getParamString(paramsMap);
+			//String params = getParamString(paramsMap);
+			//String params = "{\"touser\":\"oS2PU5KGHN_q8XX1Po5OJupi1qEM\",\"weapp_template_msg\":{\"template_id\":\"06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY\",\"page\":\"pages/index/index\",\"form_id\":\"123\",\"data\":{\"phrase1\":{\"value\":\"ds\"}},\"emphasis_keyword\":\"keyword.DATA\"},\"mp_template_msg\":{\"appid\":\"wx25b64fb13b03d43b\",\"template_id\":\"06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY\",\"url\":\"http://weixin.qq.com/download\",\"miniprogram\":{\"appid\":\"wx57b6c3f6da1c9a24\",\"pagepath\":\"pages/index/index\"},\"data\":{\"keyword\":{\"value\":\"df\"}}}}";
+			//String params = "{\"touser\":\"oS2PU5KGHN_q8XX1Po5OJupi1qEM\",\"msgtype\":\"text\",\"text\":{\"content\":\"rwx\"}}";
+			String params = "{\"touser\":\"oS2PU5KGHN_q8XX1Po5OJupi1qEM\",\"template_id\":\"06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY\",\"page\":\"pages/index/index\",\"data\":{\"date3\":{\"value\":\"2019-07-22 16:03:43\"},\"phrase1\":{\"value\":\"已派工\"}}}";
 			setHttpUrlConnection(conn, POST);
 	        conn.connect();
 	        writer = new PrintWriter(conn.getOutputStream());
