@@ -23,13 +23,13 @@ public class DateUtil_FL {
 	public static final int MONTH_SPLIT = 3;
 	/**日期格式类型Map*/
 	public static final Map<Integer, String> dateFormatTypeMap = new HashMap<Integer, String>(); 
-	/**2020.5*/
+	/**例：2020.5*/
 	public static final int YYYY_POINT_MM = 0;
-	/**20200519*/
+	/**例：20200519*/
  	public static final int YYYYMMDD = 1;
- 	/**2020-05-19*/
+ 	/**例：2020-05-19*/
  	public static final int YYYY_MM_DD = 2;
- 	/**2020-05-19 17:07:21*/
+ 	/**例：2020-05-19 17:07:21*/
  	public static final int YYYY_MM_DDHHmmss = 3;
 	
 	static {
