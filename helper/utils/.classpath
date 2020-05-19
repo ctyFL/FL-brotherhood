@@ -4,7 +4,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Apache POI"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/system"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/netsfjson"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HttpClient"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
