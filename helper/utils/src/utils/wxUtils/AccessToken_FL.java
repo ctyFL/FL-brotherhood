@@ -12,8 +12,9 @@ import utils.HttpUtil_FL;
  */
 public class AccessToken_FL {
 
-	private String miniAppId = "wx57b6c3f6da1c9a24";
-	private String miniAppSecret = "4038b724832658201e06e759e8e09afa";
+	/**FLbrotherhood*/
+	private String miniAppId = "wxe71035cb60d490e2";
+	private String miniAppSecret = "b3796d68a559f93292fed01b27aa2284";
 	private String access_token = "";
 	private Long expires_in = 0l;
 	private Long lastGetCurrentTime = 0l;

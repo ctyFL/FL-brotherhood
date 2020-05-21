@@ -23,10 +23,10 @@ public class WxTest {
 		String access_token = accessToken_FL.getMiniAppAccessToken();
 		/**发送订阅消息接口*/
 		String url = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=" + access_token;
-		/**示例：由由工单模板消息id*/
-		String templateid = "06XNv0echLQKf-9WDeXsznmUivk5c0TQrZFBSg9hihY";
+		/**示例：FLbrotherhood模板消息id*/
+		String templateid = "nJ8c2uLnhxmoX3B6GLyG6L3SU6FwNM7-SnEOkEy9u20";
 		WxMiniAppMsgTemplate template = new WxMiniAppMsgTemplate();
-		template.setTouser("oS2PU5KGHN_q8XX1Po5OJupi1qEM");
+		template.setTouser("oS2PU5KGHN_q8XX1Po5OJupi1qEM");//需填入FLbrotherhood中的openid  这里暂为由由
 		template.setTemplate_id(templateid);
 		Map<String, String> paramsMap = new HashMap<String, String>();
 		paramsMap.put("date3", DateUtil_FL.formatDateToStr(DateUtil_FL.YYYY_MM_DDHHmmss, new Date()));
