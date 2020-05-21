@@ -29,8 +29,8 @@ public class WxTest {
 		template.setTouser("oS2PU5KGHN_q8XX1Po5OJupi1qEM");//需填入FLbrotherhood中的openid  这里暂为由由
 		template.setTemplate_id(templateid);
 		Map<String, String> paramsMap = new HashMap<String, String>();
-		paramsMap.put("date3", DateUtil_FL.formatDateToStr(DateUtil_FL.YYYY_MM_DDHHmmss, new Date()));
-		paramsMap.put("phrase1", "已派工");
+		paramsMap.put("name1", "cty");
+		paramsMap.put("thing3", DateUtil_FL.formatDateToStr(DateUtil_FL.YYYY_MM_DDHHmmss, new Date()));
 		template.setData(paramsMap);
 		template.printParamJsonStr();
 		String jsonStr = template.toJsonStr();
