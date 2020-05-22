@@ -2,9 +2,11 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<!--手机屏幕适配-->
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 		<title>服务评价</title>
 		<link rel="stylesheet" href="./css/weui.css"/>
+		<link rel="stylesheet" href="./css/myapp.css"/>
 	</head>
 	<body>
 		<div class="page">
@@ -17,15 +19,15 @@
 						<table>
 							<tr>
 								<td style="text-align:right">
-								    <img src="../img/bad.png" name="radio" class="post_images_rounded" id="bad" style="max-height:49px;width:33%" onclick="change(this)" value="noselect">
+								    <img src="./img/bad.png" name="radio" class="post_images_rounded" id="bad" style="max-height:49px;width:33%" onclick="change(this)" value="noselect">
 								    <p id="pbad" style="color:gray">不满意</p>
 								</td>
 								<td style="text-align:center">
-								    <img src="../img/good.png" name="radio" class="post_images_rounded" id="good" style="max-height:49px;width:33%" onclick="change(this)" value="noselect">
+								    <img src="./img/good.png" name="radio" class="post_images_rounded" id="good" style="max-height:49px;width:33%" onclick="change(this)" value="noselect">
 								    <p id="pgood" style="color:gray">基本满意</p>
 								</td>
 								<td style="text-align:left">
-								    <img src="../img/verygood.png" name="radio" class="post_images_rounded" id="verygood" style="max-height:49px;width:33%" onclick="change(this)" value="noselect">
+								    <img src="./img/verygood.png" name="radio" class="post_images_rounded" id="verygood" style="max-height:49px;width:33%" onclick="change(this)" value="noselect">
 								    <p id="pverygood" style="color:gray">&nbsp;满意</p>
 								</td>
 							</tr>
@@ -46,6 +48,10 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			function back(){
+				alert("返回");
+			}
+			
 			function onSubmit(){
 				var radio = document.getElementsByName("radio");
 				var count = 0;
@@ -66,7 +72,7 @@
 				}
 					
 				var evaluateContent = document.getElementById("advice").value;
-				alert("满意度：" + document.getElementById("p" + item.id).innerHTML + ",建议：" + evaluateContent);
+				alert("满意度：" + document.getElementById("p" + selectId).innerHTML + ",建议：" + evaluateContent);
 			}
 			
 			function change(item){
@@ -101,13 +107,13 @@
 			}
 				
 			function setSelect(id){
-				document.getElementById(id).src = "../img/" + id + "select.png";
+				document.getElementById(id).src = "./img/" + id + "select.png";
 				document.getElementById(id).setAttribute("value", "select");
 				document.getElementById("p" + id).style.color = "black";
 			}
 				
 			function setNoSelect(id){
-				document.getElementById(id).src = "../img/" + id + ".png";
+				document.getElementById(id).src = "./img/" + id + ".png";
 				document.getElementById(id).setAttribute("value", "noselect");
 				document.getElementById("p" + id).style.color = "gray";
 			}
