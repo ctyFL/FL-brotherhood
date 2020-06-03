@@ -272,6 +272,11 @@
 				var icon = document.getElementById("icon" + year + chargeName);
 				var chargeCount = 0;
 				var checkedCount = 0;
+				
+				/**跨月销账控制*/
+				if(checkCrossMonth(obj, money)){
+					return;
+				}
 			
 				if(obj.checked){
 					var jine = obj.value.split(",");
@@ -327,6 +332,29 @@
 				document.getElementById("jine" + year + chargeName).innerHTML=" " + yearMoneySum;
 				document.getElementById("jine").innerHTML=" "+sum;
 			}
+			
+			/**
+			 * 增加跨月销账限制
+			 */
+			function checkCrossMonth(obj, money) {
+				for(i=0; i<money.length; i++) {
+					var itemYear = money[i].getAttribute("year");
+					var itemMonth = money[i].getAttribute("chargeNameAndDate").split("-")[1];
+					var year = obj.getAttribute("year");
+					var month = obj.getAttribute("chargeNameAndDate").split("-")[1];
+					if((itemYear == year && itemMonth < month && !money[i].checked && obj.checked) || 
+							(itemYear == year && itemMonth > month && money[i].checked && !obj.checked)) {
+						if(obj.checked) {
+							obj.checked = "";
+						}else {
+							obj.checked = "true";
+						}
+						alert("不允许跨月销账");
+						return true;
+					}
+				}
+			}
+			
 		</script>
 	</head>
 	<body>
