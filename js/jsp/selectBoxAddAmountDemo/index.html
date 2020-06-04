@@ -17,11 +17,21 @@
 		</style>
 		
 		<script>
+			
+			/**是否打开跨越销账限制*/
+			var checkCross = true;
+			
 			function onSelectAll(yearAndChargeName){
 				var yearAndChargeNameArr = yearAndChargeName.split(",");
 				var year = yearAndChargeNameArr[0];
 				var chargeName = yearAndChargeNameArr[1];
 				var checkStatus = getCheckedStatus(year, chargeName);
+				
+				/**跨越销账限制*/
+				if(checkCrossYearAndMonth(null, year, chargeName, "selectAll")) {
+					return;
+				}
+				
 				setCSSofCheck(checkStatus, year, chargeName);
 				setAmountAndChecked(checkStatus, year, chargeName);
 			}
@@ -35,6 +45,11 @@
 				var checkbox = document.getElementsByName("checkboxOnName");
 				var yearMoneySum = parseFloat(document.getElementById(("jine" + year + chargeName)).innerHTML);
 				var sum = parseFloat(document.getElementById("jine").innerHTML);
+				
+				/**跨越销账限制*/
+				if(checkCrossYearAndMonth(null, year, chargeName, "selectAll")) {
+					return;
+				}
 				
 				if(checkList.style.display == "none"){
 					checkList.style.display = "";
@@ -274,7 +289,12 @@
 				var checkedCount = 0;
 				
 				/**跨月销账控制*/
-				if(checkCrossMonth(obj, money)){
+				//if(checkCrossMonth(obj)){
+					//return;
+				//}
+				
+				/**跨越销账限制*/
+				if(checkCrossYearAndMonth(obj, year, chargeName, "selectItem")) {
 					return;
 				}
 			
@@ -336,23 +356,76 @@
 			/**
 			 * 增加跨月销账限制
 			 */
-			function checkCrossMonth(obj, money) {
-				for(i=0; i<money.length; i++) {
-					var itemYear = money[i].getAttribute("year");
-					var itemMonth = money[i].getAttribute("chargeNameAndDate").split("-")[1];
-					var year = obj.getAttribute("year");
-					var month = obj.getAttribute("chargeNameAndDate").split("-")[1];
-					if((itemYear == year && itemMonth < month && !money[i].checked && obj.checked) || 
-							(itemYear == year && itemMonth > month && money[i].checked && !obj.checked)) {
-						if(obj.checked) {
-							obj.checked = "";
-						}else {
-							obj.checked = "true";
+			function checkCrossMonth(obj) {
+				if(checkCross) {
+					var checkbox = document.getElementsByName("checkboxOnName");
+					for(i=0; i<checkbox.length; i++) {
+						var itemYear = checkbox[i].getAttribute("year");
+						var itemMonth = checkbox[i].getAttribute("chargeNameAndDate").split("-")[1];
+						var year = obj.getAttribute("year");
+						var month = obj.getAttribute("chargeNameAndDate").split("-")[1];
+						if((itemYear == year && itemMonth < month && !checkbox[i].checked && obj.checked) || 
+								(itemYear == year && itemMonth > month && checkbox[i].checked && !obj.checked)) {
+							if(obj.checked) {
+								obj.checked = "";
+							}else {
+								obj.checked = "true";
+							}
+							alert("不允许跨月销账");
+							return true;
 						}
-						alert("不允许跨月销账");
-						return true;
 					}
+				}else {
+					return false;
 				}
+			}
+			
+			/**
+			 * 增加跨越销账限制（跨年+跨月）
+			 */
+			function checkCrossYearAndMonth(obj, year, chargeName, flag) {
+				if(checkCross) {
+					var checkbox = document.getElementsByName("checkboxOnName");
+					if(flag == "selectItem") {
+						for(i=0; i<checkbox.length; i++) {
+							var itemChargeName = checkbox[i].getAttribute("chargeName");
+							var itemYear = checkbox[i].getAttribute("year");
+							var itemMonth = checkbox[i].getAttribute("chargeNameAndDate").split("-")[1];
+							var year = obj.getAttribute("year");
+							var month = obj.getAttribute("chargeNameAndDate").split("-")[1];
+							if(itemChargeName == chargeName) {
+								if((((itemYear == year && itemMonth < month) || (itemYear < year)) && !checkbox[i].checked && obj.checked) ||
+										(((itemYear == year && itemMonth > month) || (itemYear > year)) && checkbox[i].checked && !obj.checked)) {
+									if(obj.checked) {
+										obj.checked = "";
+									}else {
+										obj.checked = "true";
+									}
+									alert("不允许跨越销账");
+									return true;
+								}
+							}
+						}
+					}else if(flag == "selectAll") {
+						for(i=0; i<checkbox.length; i++) {
+							var itemChargeName = checkbox[i].getAttribute("chargeName");
+							var itemYear = checkbox[i].getAttribute("year");
+							if(itemChargeName == chargeName) {
+								if((itemYear < year && !checkbox[i].checked) || (itemYear > year && checkbox[i].checked)) {
+									alert("不允许跨越销账");
+									return true;
+								}
+							}
+						}
+					}
+				}else {
+					return false;
+				}
+			}
+			
+			function pay() {
+				var totalAmount = document.getElementById("jine").innerHTML;
+				alert("付款金额为：" + totalAmount);
 			}
 			
 		</script>
@@ -551,7 +624,7 @@
 				<a href="javascript:;" class="weui_btn_dialog default" align="center" style="display:inline-block;float:left;padding-top:10px;width:50%;">
 					合计：￥<font id="jine" style="color: #F79685">0.00</font>元
 				</a>
-				<a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary btn" align="center" style="display:inline-block;float:left;margin-top:9px;margin-left:51px;width:25%;background-color:#2597EC;" id="payButton">付款</a>
+				<a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary btn" align="center" style="display:inline-block;float:left;margin-top:9px;margin-left:51px;width:25%;background-color:#2597EC;" id="payButton" onclick="pay()">付款</a>
 				<input type="hidden" name="totalAmount" id="totalAmount" value="0">
 			</div>
 			
