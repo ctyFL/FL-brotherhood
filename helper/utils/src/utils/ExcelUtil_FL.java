@@ -148,8 +148,7 @@ public class ExcelUtil_FL {
 				pcsStrCell.setCellType(CellType.STRING);
 				pcsStr = pcsStrCell.getStringCellValue().trim();
 			}
-			String iq  = row.getStringCellValue().trim();
-			if("UNIT PRICE (USD)".equals(row.getStringCellValue().trim())) {
+			if("UNIT PRICE\n(USD)".equals(row.getStringCellValue().trim())) {
 				XSSFCell priceStrCell = sheet.getRow(i).getCell(1); 
 				priceStrCell.setCellType(CellType.STRING);
 				priceStr = priceStrCell.getStringCellValue().trim();
