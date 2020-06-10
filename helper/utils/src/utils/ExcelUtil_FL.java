@@ -56,11 +56,11 @@ public class ExcelUtil_FL {
 				idNoCell.setCellType(CellType.STRING);
 				manageNoCell.setCellType(CellType.STRING);
 				
-				String roomNo = roomNoCell.getStringCellValue();
-				String customer = customerCell.getStringCellValue();
-				String telePhone = telePhoneCell.getStringCellValue();
-				String idNo = idNoCell.getStringCellValue();
-				String manageNo = manageNoCell.getStringCellValue();
+				String roomNo = roomNoCell.getStringCellValue().trim();
+				String customer = customerCell.getStringCellValue().trim();
+				String telePhone = telePhoneCell.getStringCellValue().trim();
+				String idNo = idNoCell.getStringCellValue().trim();
+				String manageNo = manageNoCell.getStringCellValue().trim();
 				sql += "update PropCustomer set "
 						+ " TELEPHONE='" + telePhone + "',IDNO='" + idNo + "',MANAGENO='" + manageNo + "' "
 						+ " where ID=(select a.ID from PropCustomer a "
