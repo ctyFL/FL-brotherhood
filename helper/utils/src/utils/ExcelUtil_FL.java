@@ -85,7 +85,7 @@ public class ExcelUtil_FL {
 	}
 	
 	/**
-	 * 营口国海项目导入客户资料
+	 * 营口国海项目导入客户资料SQL生成
 	 * @param wb
 	 */
 	private static void importPropCustomerInfo_yingkouguohai(XSSFWorkbook wb) {
