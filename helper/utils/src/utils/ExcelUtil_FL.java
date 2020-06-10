@@ -57,7 +57,8 @@ public class ExcelUtil_FL {
 		}
 		try {
 			XSSFWorkbook wb = (XSSFWorkbook) openWorkBook(filePath, EXCEL_XLSX);
-			importPropCustomerInfo_yingkouguohai(wb);
+			//importPropCustomerInfo_yingkouguohai(wb);
+			readFromLeuchTek(wb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,6 +121,42 @@ public class ExcelUtil_FL {
 					+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
 		}
 		FileUtil_FL.createNewTxtFile("E:/", "log1", sql);
+	}
+	
+	private static void readFromLeuchTek(XSSFWorkbook wb) {
+		XSSFSheet sheet = wb.getSheetAt(0);
+		int rowsOfSheet = sheet.getPhysicalNumberOfRows();
+		String dateStr = "";
+		String modelStr = "";
+		String pcsStr = "";
+		String priceStr = "";
+		for(int i=0; i<rowsOfSheet; i++) {
+			XSSFCell row = sheet.getRow(i).getCell(0);
+			row.setCellType(CellType.STRING);
+			if("DATA".equals(row.getStringCellValue().trim())) {
+				XSSFCell dateStrCell = sheet.getRow(i).getCell(1); 
+				dateStrCell.setCellType(CellType.STRING);
+				dateStr = dateStrCell.getStringCellValue().trim();
+			}
+			if("MODEL".equals(row.getStringCellValue().trim())) {
+				XSSFCell modelStrCell = sheet.getRow(i).getCell(1); 
+				modelStrCell.setCellType(CellType.STRING);
+				modelStr = modelStrCell.getStringCellValue().trim();
+			}
+			if("QTY(PCS)".equals(row.getStringCellValue().trim())) {
+				XSSFCell pcsStrCell = sheet.getRow(i).getCell(1); 
+				pcsStrCell.setCellType(CellType.STRING);
+				pcsStr = pcsStrCell.getStringCellValue().trim();
+			}
+			String iq  = row.getStringCellValue().trim();
+			if("UNIT PRICE (USD)".equals(row.getStringCellValue().trim())) {
+				XSSFCell priceStrCell = sheet.getRow(i).getCell(1); 
+				priceStrCell.setCellType(CellType.STRING);
+				priceStr = priceStrCell.getStringCellValue().trim();
+			}
+		}
+		String result = dateStr + "," + modelStr + "," + pcsStr + "," + priceStr;
+		FileUtil_FL.createNewTxtFile("E:/", "LeuchTek", result);
 	}
 	
 }
