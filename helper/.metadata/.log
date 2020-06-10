@@ -7759,3 +7759,12 @@ org.eclipse.jface.resource.DeviceResourceException: Unable to create resource UR
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2020-06-10 14:29:52.139
+!MESSAGE No repository found at http://download.eclipse.org/usssdk/drops/nightly/N854.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2020-06-10 14:30:55.548
+!MESSAGE No repository found at http://download.eclipse.org/usssdk/drops/nightly/N899.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2020-06-10 14:31:07.668
+!MESSAGE No repository found at http://download.eclipse.org/usssdk/drops/nightly/N20190621-034017.

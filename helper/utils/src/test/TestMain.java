@@ -39,7 +39,7 @@ public class TestMain {
 		HttpUtil_FL.HttpGetThread(null, servletName);
 		HttpUtil_FL.HttpPostThread(null, servletName);
 		
-		ExcelUtil_FL.readXlsxExcelByPOI("D:/23.xlsx");
+		ExcelUtil_FL.readXlsxExcelByPOI("D:/22.xlsx");
 	}
 
 }
