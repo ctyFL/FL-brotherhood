@@ -32,43 +32,32 @@ public class ExcelUtil_FL {
 	public static final String EXCEL_XLSX = "xlsx";
 	public static final String EXCEL_XLS = "xls";
 
+	/**
+	 * 读取、操作指定路径下后缀为xls的表格文件
+	 * @param filePath
+	 */
+	public static void readXlsExcelByPOI(String filePath) {
+		if(!FileUtil_FL.isExists(filePath)) {
+			return;
+		}
+		try {
+			HSSFWorkbook wb = (HSSFWorkbook) openWorkBook(filePath, EXCEL_XLS);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 读取、操作指定路径下后缀为xlsx的表格文件
+	 * @param filePath
+	 */
 	public static void readXlsxExcelByPOI(String filePath) {
 		if(!FileUtil_FL.isExists(filePath)) {
 			return;
 		}
 		try {
-			String sql = "";
 			XSSFWorkbook wb = (XSSFWorkbook) openWorkBook(filePath, EXCEL_XLSX);
-			XSSFSheet sheet = wb.getSheetAt(0);
-			XSSFRow firstRow = sheet.getRow(0);
-			int rowsOfSheet = sheet.getPhysicalNumberOfRows();
-			for(int i=1; i<rowsOfSheet; i++) {
-				XSSFRow row = sheet.getRow(i);
-				XSSFCell roomNoCell = row.getCell(2);
-				XSSFCell customerCell = row.getCell(3);
-				XSSFCell telePhoneCell = row.getCell(4);
-				XSSFCell idNoCell = row.getCell(5);
-				XSSFCell manageNoCell = row.getCell(6);
-				
-				roomNoCell.setCellType(CellType.STRING);
-				customerCell.setCellType(CellType.STRING);
-				telePhoneCell.setCellType(CellType.STRING);
-				idNoCell.setCellType(CellType.STRING);
-				manageNoCell.setCellType(CellType.STRING);
-				
-				String roomNo = roomNoCell.getStringCellValue().trim();
-				String customer = customerCell.getStringCellValue().trim();
-				String telePhone = telePhoneCell.getStringCellValue().trim();
-				String idNo = idNoCell.getStringCellValue().trim();
-				String manageNo = manageNoCell.getStringCellValue().trim();
-				sql += "update PropCustomer set "
-						+ " TELEPHONE='" + telePhone + "',IDNO='" + idNo + "',MANAGENO='" + manageNo + "' "
-						+ " where ID=(select a.ID from PropCustomer a "
-						+ " inner join PropRoomCustomerDetail b on a.ID = b.PROPCUSTOMER_ID "
-						+ " inner join PropRoom c on c.ID = b.PROPROOM_ID "
-						+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
-			}
-			FileUtil_FL.createNewTxtFile("E:/", "log1", sql);
+			importPropCustomerInfo_yingkouguohai(wb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -94,4 +83,43 @@ public class ExcelUtil_FL {
 		}
 		return workbook;
 	}
+	
+	/**
+	 * 营口国海项目导入客户资料
+	 * @param wb
+	 */
+	private static void importPropCustomerInfo_yingkouguohai(XSSFWorkbook wb) {
+		String sql = "";
+		XSSFSheet sheet = wb.getSheetAt(0);
+		XSSFRow firstRow = sheet.getRow(0);
+		int rowsOfSheet = sheet.getPhysicalNumberOfRows();
+		for(int i=1; i<rowsOfSheet; i++) {
+			XSSFRow row = sheet.getRow(i);
+			XSSFCell roomNoCell = row.getCell(2);
+			XSSFCell customerCell = row.getCell(3);
+			XSSFCell telePhoneCell = row.getCell(4);
+			XSSFCell idNoCell = row.getCell(5);
+			XSSFCell manageNoCell = row.getCell(6);
+			
+			roomNoCell.setCellType(CellType.STRING);
+			customerCell.setCellType(CellType.STRING);
+			telePhoneCell.setCellType(CellType.STRING);
+			idNoCell.setCellType(CellType.STRING);
+			manageNoCell.setCellType(CellType.STRING);
+			
+			String roomNo = roomNoCell.getStringCellValue().trim();
+			String customer = customerCell.getStringCellValue().trim();
+			String telePhone = telePhoneCell.getStringCellValue().trim();
+			String idNo = idNoCell.getStringCellValue().trim();
+			String manageNo = manageNoCell.getStringCellValue().trim();
+			sql += "update PropCustomer set "
+					+ " TELEPHONE='" + telePhone + "',IDNO='" + idNo + "',MANAGENO='" + manageNo + "' "
+					+ " where ID=(select a.ID from PropCustomer a "
+					+ " inner join PropRoomCustomerDetail b on a.ID = b.PROPCUSTOMER_ID "
+					+ " inner join PropRoom c on c.ID = b.PROPROOM_ID "
+					+ " where a.CUSTOMERNAME='" + customer + "' and c.ROOMNO='" + roomNo + "') \r\n";
+		}
+		FileUtil_FL.createNewTxtFile("E:/", "log1", sql);
+	}
+	
 }
