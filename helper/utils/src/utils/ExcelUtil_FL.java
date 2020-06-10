@@ -92,7 +92,6 @@ public class ExcelUtil_FL {
 	private static void importPropCustomerInfo_yingkouguohai(XSSFWorkbook wb) {
 		String sql = "";
 		XSSFSheet sheet = wb.getSheetAt(0);
-		XSSFRow firstRow = sheet.getRow(0);
 		int rowsOfSheet = sheet.getPhysicalNumberOfRows();
 		for(int i=1; i<rowsOfSheet; i++) {
 			XSSFRow row = sheet.getRow(i);
