@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +32,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 public class ReceiveFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	private Map<String, String> params = new HashMap<String, String>();
 	private String savepath_root = "";
 	private String savepath_father = "";

@@ -2,3 +2,4 @@ commentBorder=\#008000 | null | null | null | null | null
 commentText=\#008000 | null | null | null | null | null
 eclipse.preferences.version=1
 jsp_content=\#8000FF | null | null | null | null | null
+newFileTemplateName=New JSP File (html)
