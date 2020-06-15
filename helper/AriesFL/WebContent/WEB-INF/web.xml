@@ -42,6 +42,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>JerseyServletContenter</servlet-name>
-  	<url-pattern>/rest/*</url-pattern>
+  	<url-pattern>/restFL/*</url-pattern>
   </servlet-mapping>
 </web-app>
