@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	function restRequest() {
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url: "<%=request.getContextPath()%>/restFL/jerseyrestdemo/hi",
 			//async: false,//默认为true 异步
 			data: {str:"1"},

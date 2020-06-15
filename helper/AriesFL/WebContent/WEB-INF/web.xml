@@ -32,7 +32,7 @@
   
   <!-- jersey_restful -->
   <servlet>
-  	<servlet-name>JerseyServletContenter</servlet-name>
+  	<servlet-name>Jersey-restful</servlet-name>
   	<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
   	<init-param>
   		<param-name>com.sun.jersey.config.property.packages</param-name>
@@ -41,7 +41,7 @@
   	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>JerseyServletContenter</servlet-name>
+  	<servlet-name>Jersey-restful</servlet-name>
   	<url-pattern>/restFL/*</url-pattern>
   </servlet-mapping>
 </web-app>

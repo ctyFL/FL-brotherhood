@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.print.attribute.standard.RequestingUserName"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.RequestContext"/>
@@ -52,12 +50,14 @@
 <fullyQualifiedTypeName name="utils.wxUtils.AccessToken_FL"/>
 <fullyQualifiedTypeName name="org.omg.CosNaming.NamingContextExtPackage.StringNameHelper"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="utils.HttpUtil_FL"/>
 <fullyQualifiedTypeName name="utils.FileUtil_FL"/>
 <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CellType"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.sun.jersey.spi.container.servlet.ServletContainer"/>
+<fullyQualifiedTypeName name="javax.ws.rs.FormParam"/>
+<fullyQualifiedTypeName name="javafx.scene.chart.PieChart.Data"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>
