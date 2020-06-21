@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- v-if与v-show的区别：
+			 v-if会控制标签在dom树上的创建和删除
+			 v-show控制的是标签的显示和隐藏样式，而不会将它在dom树上删除
+		 -->
+		<div id="root">
+			<!-- v-if：当isShow为false时，会将它所控制的标签从dom树上删除 -->
+			<div v-if="isShow">
+				<h3>v-if：{{content}}</h1>
+			</div>
+			<!-- v-show：当isShow为false时，会将它所控制的标签的style改变为style="display:none"，而不会在dom树上删除 -->
+			<div v-show="isShow">
+				<h3>v-show：{{content}}</h3>
+			</div>
+			<button @click="changeShow">{{btnText}}</button>
+		</div>
+		<script type="text/javascript">
+			new Vue({//Vue实例
+				el: "#root",//挂载点 #加element的id
+				data: {
+					isShow: true,
+					content: "hello vue",
+					btnText: "隐藏"
+				},
+				watch: {//侦听器 侦听isShow值的变化
+					isShow: function() {
+						if(this.isShow) { 
+							this.btnText = "隐藏"
+						}else {
+							this.btnText = "显示"
+						}
+					}
+				},
+				methods: {//方法定义区
+					changeShow: function() {
+						this.isShow = !this.isShow
+					}
+				},
+			})
+		</script>
+	</body>
+</html>

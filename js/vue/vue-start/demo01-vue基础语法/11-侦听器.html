@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<input v-model="content"/><br/>
+			<input v-model="msg"/><br/>
+			<!-- 计算属性：full每一次会使用上一次计算属性的缓存值 -->
+			<div>{{full}}</div>
+			<div>{{count}}</div>
+		</div>
+		<script type="text/javascript">
+			new Vue({//Vue实例
+				el: "#root",//挂载点 #加element的id
+				data: {
+					content: "",
+					msg: "",
+					//full: "", 错误：计算属性不能定义在data里
+					count: 0
+				},
+				computed: {//计算属性：一个属性通过其他属性计算而来
+					full: function() {
+						return this.content + " " + this.msg
+					}
+				},
+				watch: {//侦听器：侦听其他属性发送变化
+					content: function() {//侦听content变化
+						this.count ++
+					},
+					msg: function() {//侦听msg变化
+						this.count ++
+					},
+					full: function() {//侦听计算属性full变化
+						this.count ++
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
