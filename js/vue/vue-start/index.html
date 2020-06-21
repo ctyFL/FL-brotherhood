@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vue入门</title>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h1>{{demo01}}</h1>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vue = new Vue({
+			el: "#root",
+			data: {
+				demo01: "demo01-vue基础语法"
+			}
+		})
+	</script>
+</html>

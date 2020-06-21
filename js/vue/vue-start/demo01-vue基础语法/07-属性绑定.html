@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- title是div的一个属性，当鼠标悬停在div上，将会显示title的值 -->
+			<div title="title是div的一个属性，当鼠标悬停在div上，将会显示title的值">{{div}}</div>
+			<!-- 'v-band:属性名=实例中的data值'————属性绑定 -->
+			<div v-bind:title="value">{{div}}</div>
+			<div v-bind:title="'引号里其实就是一个js表达式，' + value">{{div}}</div>
+			<!-- v-band:title="value"可以简写成:title="value" -->
+			<div :title="value">{{div}}</div>
+		</div>
+		<script type="text/javascript">
+			new Vue({//Vue实例
+				el: "#root",//挂载点 #加element的id
+				data: {
+					div: "示例",
+					value: "使用了属性绑定"
+				}
+			})
+		</script>
+	</body>
+</html>

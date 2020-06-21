@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 绑定点击事件 -->
+			<h1 v-on:click="bandOnClickEvent">{{content}}</h1>
+		</div>
+		<script type="text/javascript">
+			new Vue({//Vue实例
+				el: "#root",//挂载点 #加element的id
+				data: {
+					content: "点击"
+				},
+				methods: {//方法定义区
+					bandOnClickEvent: function() {
+						alert("点击事件");
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

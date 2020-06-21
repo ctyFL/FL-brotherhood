@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h1>{{content}}</h1>
+			<!-- 绑定点击事件 -->
+			<h1 v-on:click="changeContent">{{msg}}</h1>
+		</div>
+		<script type="text/javascript">
+			new Vue({//Vue实例
+				el: "#root",//挂载点 #加element的id
+				data: {
+					msg: "点我改变数据",
+					content: "hello"
+				},
+				methods: {//方法定义区
+					changeContent: function() {
+						//改变实例里的数据
+						this.msg = "一直点，会一直追加'vue'";
+						this.content += " vue";
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
