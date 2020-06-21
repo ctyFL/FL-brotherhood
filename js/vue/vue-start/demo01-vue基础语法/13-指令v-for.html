@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<ul>
+				<!-- v-for遍历：定义item代表data中的list的每一项 -->
+				<li v-for="item of list">{{item}}</li>
+				
+				<li>{{text1}}</li>
+				
+				<!-- 使用key属性可以提升渲染的效率、性能，但是要求key值唯一 -->
+				<!-- list中的每一项值都是唯一时：可以直接使用每一项作为key -->
+				<li v-for="item of list" :key="item">{{item}}</li>
+				
+				<li>{{text2}}</li>
+				
+				<!-- arr中当遍历的数据不是每一项都是唯一时：key可以使用index，代表下标-->
+				<li v-for="(a, index) of arr" :key="index">{{a}}</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			new Vue({//Vue实例
+				el: "#root",//挂载点 #加element的id
+				data: {
+					list: [1,2,3,4,5,6,7],
+					arr: [1,2,2,4,3,1,1],
+					text1: "--使用key属性可以提升渲染的效率、性能，要求key值唯一--",
+					text2: "--当遍历的数据的不是每一项都是唯一时，key可以使用index，代表下标--"
+				}
+			})
+		</script>
+	</body>
+</html>
