@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<input v-model="inputValue"/>
+			<button @click="onSubmit">提交</button>
+			<!-- 当ul中的内容很庞大时，将ul里的内容定义成组件会更好维护 -->
+			<ul>
+				<!-- <li v-for="(item, index) of list" :key="index">{{item}}</li> -->
+				<todoItem></todoItem>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			
+			//定义全局组件
+			Vue.component("todoItem",{
+				template: '<li>item</li>'  
+			})
+			
+			new Vue({
+				el: "#root",
+				data: {
+					inputValue: "请输入数据",
+					list: []
+				},
+				methods: {
+					onSubmit: function() {
+						this.list.push(this.inputValue)
+						this.inputValue = ""
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
