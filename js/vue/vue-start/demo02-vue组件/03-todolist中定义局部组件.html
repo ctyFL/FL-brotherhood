@@ -17,12 +17,17 @@
 		</div>
 		<script type="text/javascript">
 			
+			//实际上，每一个Vue的组件又是一个Vue的实例，可以看成一个小的实例，也可以定义data、method等
+			//每一个实例也可以看成一个个组件，父组件、子组件
+			
+			//子组件
 			//定义局部组件：需要在Vue实例中使用compoents声明
 			//局部组件————一个Vue实例想要使用这个组件，就需要使用components去注册这个组件，没有注册的Vue实例无法使用这个组件
 			var itemCompPart = {
 				template: "<li>局部组件</li>"
 			}
 			
+			//父组件
 			new Vue({
 				el: "#root",
 				data: {

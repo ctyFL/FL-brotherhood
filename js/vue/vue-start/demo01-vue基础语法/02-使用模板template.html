@@ -8,6 +8,9 @@
 	<body>
 		<div id="root"></div>
 		<script type="text/javascript">
+			
+			//若实例中没有定义template，则Vue会用挂载点下的所有标签作为这个实例的模板
+			
 			new Vue({//Vue实例
 				el: "#root",//挂载点 #加element的id
 				template: "<h1>输出：{{msg}}</h1>",//模板

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue入门</title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<input v-model="inputValue"/>
+			<button @click="onSubmit">提交</button>
+			
+			<ul>
+				<!-- 定义一个名为index的属性，用来传下标的值 -->
+				<!-- @delete用来监听子组件向外部触发的delete事件 -->
+				<mycomp v-for="(item, index) of list" :key="index" :content="item" :index="index" @delete="onItemDelete"></mycomp>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			
+			Vue.component("mycomp", {
+				props: ["content","index"],
+				template: "<li @click='deleteItem'>{{content}} 下标：{{index}}</li>",
+				methods: {
+					deleteItem: function() {
+						//$emit子组件向外部触发一个事件，事件的名字叫“delete“
+						this.$emit("delete", this.index)
+					}
+				}
+			})
+			
+			new Vue({
+				el: "#root",
+				data: {
+					inputValue: "",
+					list: []
+				},
+				methods: {
+					onSubmit: function() {
+						this.list.push(this.inputValue)
+						this.inputValue = ""
+					},
+					onItemDelete: function(index) {
+						//从对应的下标位置删除一项
+						this.list.splice(index, 1)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
