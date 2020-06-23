@@ -9,28 +9,28 @@
 		<div id="root">
 			<input v-model="inputValue"/>
 			<button @click="onSubmit">提交</button>
-			<!-- 当ul中的内容很庞大时，将ul里的内容定义成组件会更好维护 -->
 			<ul>
+				<!-- 当ul中的内容很庞大时，将ul里的内容定义成组件更好维护 -->
 				<!-- <li v-for="(item, index) of list" :key="index">{{item}}</li> -->
 				<mycomp></mycomp>
-				<!-- 也可以使用v-for -->
-				<!-- 可以自定义一个属性来传参，这里定义一个叫content的属性 -->
-				<mycomp v-for="(item, index) of list" :key="index" :content></mycomp>
 			</ul>
 		</div>
 		<script type="text/javascript">
 			
-			//定义全局组件
-			//自定义的标签名得全小写
-			Vue.component("mycomp", {
-				template: "<li>定义了全局组件</li>"
-			})
+			//定义局部组件：需要在Vue实例中使用compoents声明
+			//局部组件————一个Vue实例想要使用这个组件，就需要使用components去注册这个组件，没有注册的Vue实例无法使用这个组件
+			var itemCompPart = {
+				template: "<li>局部组件</li>"
+			}
 			
 			new Vue({
 				el: "#root",
 				data: {
 					inputValue: "请输入数据",
 					list: []
+				},
+				components:{
+					"mycomp": itemCompPart
 				},
 				methods: {
 					onSubmit: function() {
