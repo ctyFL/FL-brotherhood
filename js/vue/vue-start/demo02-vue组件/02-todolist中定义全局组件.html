@@ -14,16 +14,27 @@
 				<!-- <li v-for="(item, index) of list" :key="index">{{item}}</li> -->
 				<mycomp></mycomp>
 				<!-- 也可以使用v-for -->
-				<!-- 可以自定义一个属性来传参，这里定义一个叫content的属性 -->
-				<mycomp v-for="(item, index) of list" :key="index" :content></mycomp>
+				<!-- 可以自定义一个属性来传参，这里定义一个叫content的属性，可以把item值传给自定义属性content
+					 组件里需要去接收这个自定义的属性，使用props接收，然后就可以使用这个属性得到传进来的参数 -->
+				<mycomp v-for="(item, index) of list" :key="index" :content="item"></mycomp>
 			</ul>
 		</div>
 		<script type="text/javascript">
 			
+			//实际上，每一个Vue的组件又是一个Vue的实例，可以看成一个小的实例，也可以定义data、method等
+			
 			//定义全局组件
 			//自定义的标签名得全小写
 			Vue.component("mycomp", {
-				template: "<li>定义了全局组件</li>"
+				//props：值可以是一个数组，这里接收自定义的属性，组件里就可以使用这个传进来的参数了
+				//接收一个从外部传进来的一个名叫content的自定义属性
+				props: ["content"],
+				template: "<li @click='comp'>{{content}}</li>",
+				methods: {
+					comp: function() {
+						alert("每一个组件其实都是一个Vue实例，也可以绑定事件")
+					}
+				}
 			})
 			
 			new Vue({
