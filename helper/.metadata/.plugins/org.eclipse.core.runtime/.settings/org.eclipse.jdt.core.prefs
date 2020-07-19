@@ -1,4 +1,12 @@
 eclipse.preferences.version=1
+org.eclipse.jdt.core.classpathVariable.ECLIPSE_HOME=D\:/jee-oxygen/eclipse/
+org.eclipse.jdt.core.classpathVariable.FINDBUGS_ANNOTATIONS=C\:/Users/cty/.p2/pool/plugins/edu.umd.cs.findbugs.plugin.eclipse_3.0.1.20150306-5afe4d1/lib/annotations.jar
+org.eclipse.jdt.core.classpathVariable.JRE_LIB=D\:/jdk/jdk1.8/jre/lib/rt.jar
+org.eclipse.jdt.core.classpathVariable.JRE_SRC=D\:/jdk/jdk1.8/src.zip
+org.eclipse.jdt.core.classpathVariable.JRE_SRCROOT=
+org.eclipse.jdt.core.classpathVariable.JSR305_ANNOTATIONS=C\:/Users/cty/.p2/pool/plugins/edu.umd.cs.findbugs.plugin.eclipse_3.0.1.20150306-5afe4d1/lib/jsr305.jar
+org.eclipse.jdt.core.classpathVariable.JUNIT_HOME=C\:/Users/cty/.p2/pool/plugins/org.junit_4.12.0.v201504281640/
+org.eclipse.jdt.core.classpathVariable.M2_REPO=C\:/Users/cty/.m2/repository
 org.eclipse.jdt.core.classpathVariable.TOMCAT_HOME=D\:/tomcat/apache-tomcat-8.5.20
 org.eclipse.jdt.core.codeComplete.visibilityCheck=enabled
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
@@ -8,4 +16,5 @@ org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.source=1.8
 org.eclipse.jdt.core.userLibrary.Apache\ POI=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<userlibrary systemlibrary\="false" version\="2">\r\n\t<archive path\="/utils/jar/poi-4.1.2/poi-4.1.2.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/poi-ooxml-4.1.2.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>\r\n</userlibrary>\r\n
+org.eclipse.jdt.core.userLibrary.asm=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<userlibrary systemlibrary\="false" version\="2">\r\n\t<archive path\="/utils/jar/asm/asm-7.0.jar"/>\r\n\t<archive path\="/utils/jar/asm/asm-util-7.1.jar"/>\r\n</userlibrary>\r\n
 org.eclipse.jdt.core.userLibrary.system=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<userlibrary systemlibrary\="false" version\="2">\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/activation-1.1.1.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/commons-codec-1.13.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/commons-collections4-4.4.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/commons-compress-1.19.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/commons-logging-1.2.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/commons-math3-3.6.1.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/jaxb-api-2.3.1.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/jaxb-core-2.3.0.1.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/jaxb-impl-2.3.2.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/junit-4.12.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/log4j-1.2.17.jar"/>\r\n\t<archive path\="/utils/jar/poi-4.1.2/lib/SparseBitSet-1.2.jar"/>\r\n</userlibrary>\r\n

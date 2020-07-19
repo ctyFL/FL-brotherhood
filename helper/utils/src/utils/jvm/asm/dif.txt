@@ -1,0 +1,67 @@
+比较useASMbefore与useASmafter
+
+
+useASmafter在以下两个代码块之间
+methodVisitor.visitCode();
+Label label0 = new Label();
+Label label1 = new Label();
+Label label2 = new Label();
+methodVisitor.visitTryCatchBlock(label0, label1, label2, "java/lang/Exception");
+methodVisitor.visitLabel(label0);
+methodVisitor.visitLineNumber(37, label0);
+...
+methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+methodVisitor.visitLdcInsn("doWithASM() method start \u2014\u2014\u2014\u2014>");
+
+
+增加了这部分：
+
+methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+methodVisitor.visitVarInsn(LSTORE, 1);
+Label label3 = new Label();
+methodVisitor.visitLabel(label3);
+methodVisitor.visitLineNumber(39, label3);
+
+
+
+
+
+
+
+在以下两个代码块之间
+methodVisitor.visitLdcInsn("doWithASM() method end <\u2014\u2014\u2014\u2014");
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+...
+methodVisitor.visitLabel(label1);
+methodVisitor.visitLineNumber(47, label1);
+Label label10 = new Label();
+methodVisitor.visitJumpInsn(GOTO, label10);
+增加了这部分：
+
+
+Label label7 = new Label();
+methodVisitor.visitLabel(label7);
+methodVisitor.visitLineNumber(44, label7);
+methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+methodVisitor.visitVarInsn(LSTORE, 3);
+Label label8 = new Label();
+methodVisitor.visitLabel(label8);
+methodVisitor.visitLineNumber(45, label8);
+methodVisitor.visitVarInsn(LLOAD, 3);
+methodVisitor.visitVarInsn(LLOAD, 1);
+methodVisitor.visitInsn(LSUB);
+methodVisitor.visitVarInsn(LSTORE, 5);
+Label label9 = new Label();
+methodVisitor.visitLabel(label9);
+methodVisitor.visitLineNumber(46, label9);
+methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+methodVisitor.visitTypeInsn(NEW, "java/lang/StringBuilder");
+methodVisitor.visitInsn(DUP);
+methodVisitor.visitLdcInsn("method: doWithASM() took ");
+methodVisitor.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "(Ljava/lang/String;)V", false);
+methodVisitor.visitVarInsn(LLOAD, 5);
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
+methodVisitor.visitLdcInsn(" ms");
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
