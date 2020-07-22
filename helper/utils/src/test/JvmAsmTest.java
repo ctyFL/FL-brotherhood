@@ -12,8 +12,7 @@ public class JvmAsmTest {
 
 	public static void main(String[] args) {
 		CustomerDemo cus = new CustomerDemo();
-		cus.doSameThing();//有埋点
-		cus.doWithASM();//没有埋点，通过ASM动态给方法添加统计运行时间的方法
+		cus.doSameThing();
 	}
 	
 }

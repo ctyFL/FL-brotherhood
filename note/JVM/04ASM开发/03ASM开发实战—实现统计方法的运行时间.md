@@ -1,4 +1,4 @@
-ASM开发实战————实现统计方法的运行时间（性能调优的时候想要知道一个方法的运行时间是多少，然而提前埋点是不可能的，实现方式类似AOP）
+ASM开发实战————实现统计方法的运行时间，并打印当前类名和方法名（性能调优的时候想要知道一个方法的运行时间是多少，然而提前埋点是不可能的，不可能在每个方法的开头结尾都打个桩，实现方式类似AOP）
 
 		ASM给我们提供了 ASMifier 工具来帮助开发，可使用这个工具生成ASM结构来对比（将原先的文件和修改后的文件对比）
 
@@ -11,11 +11,12 @@ ASM开发实战————实现统计方法的运行时间（性能调优的�
 	步骤：
 		1.创建一个需要被修改的类，统计这个类中的某个方法的运行时间：
 			FL-brotherhood下 helper/utils/src/utils/jvm/asm/CustomerDemo.java
-			CustomerDemo中有两个方法，doSameThing()————这个方法中使用埋点的方法，在方法的头和尾使用System.currentTimeMillis()获取当前时间毫秒数，最后的差值就是该方法运行消耗的时间
+			CustomerDemo中创建一个方法，doSameThing()————这个方法中先使用埋点的方法实现这个功能：
+			在方法的头和尾使用Thread.currentThread() .getStackTrace()[1].getClassName()获取类全名
+			使用Thread.currentThread().getStackTrace()[1].getMethodName()获取方法名
+			使用System.currentTimeMillis()获取当前时间毫秒数，最后的差值就是该方法运行消耗的时间
 
-			doWithASM()————这个方法中就只有原先的业务代码
-
-		2.使用 “ASMifier工具” 生成一份这个类的代码：
+		2.使用 “ASMifier工具” 生成一份这个类使用埋点的方法实现了这个功能的代码：
 			首先在该类的编译后的class文件的所在的位置下cmd，也就是在（E:\gitHub\gitHubProject\FL-brotherhood\helper\utils\bin\utils\jvm\asm）：
 				打开cmd————先cd到E盘（输入 e: 然后回车）————然后cd到class文件所在位置（输入 cd gitHub/gitHubProject/FL-brotherhood/helper/utils/bin/utils/jvm/asm）
 
@@ -24,12 +25,12 @@ ASM开发实战————实现统计方法的运行时间（性能调优的�
 			然后后面跟上 “ASMifier工具” 的全面， 和要被处理的class文件：		
 			java -cp E:\gitHub\gitHubProject\FL-brotherhood\helper\utils\jar\asm\asm-7.0.jar;E:\gitHub\gitHubProject\FL-brotherhood\helper\utils\jar\asm\asm-util-7.1.jar org.objectweb.asm.util.ASMifier CustomerDemo.class
 
-			回车后把生成的代码先复制出来：useASMbefore.txt
+			回车后把生成的代码先复制出来：addFunctionAfter.txt
 
-		3.在doWithASM()方法中，像doSameThing()中一样，加上埋点，然后再使用 “ASMifier工具” 生成一次，把新生成的代码复制出来：useASMafter.txt
+		3.在doSameThing()方法中，去掉埋点，然后再使用 “ASMifier工具” 生成一次，把新生成的代码复制出来：addFunctionBefore.txt
 
-		4.比较两份代码的不同之处，也就是新增的地方，把新增的代码块复制出来：dif.txt
-			这部分代码就是我们所要新增的功能，这几行代码就是对应“System.currentTimeMillis()”的那几行代码
+		4.比较两份代码的不同之处，也就是减少了的部分，把新增的代码块复制出来：dif.txt
+			这部分减少的代码块就是我们所要新增的功能，这几行代码就是对应“获得类全名、方法名和System.currentTimeMillis()”的那几行代码
 
 		原理：“ASMifier工具” 生成的代码，就是ASM以visitor的方式去操作字节码的指令，我们就是利用它来帮助我们生成代码，就不需要我们自己去编写了，我们先写好想要改造后的代码，给ASMifier生成一遍，再和改造前比较，就能获得我们想要的代码
 
@@ -68,6 +69,8 @@ ASM开发实战————实现统计方法的运行时间（性能调优的�
 		 				等...
 
 			这里我们的统计时间的功能，是在方法开始前记录一次，方法结束时记录一次，所以重写 visitCode、visitInsn 这两个方法，然后将之前复制出来的代码分别复制到方法里
+
+			注意：visitInsn方法执行时表示真正到了方法的结尾，所以我们要把新增的功能的结尾部分的代码块加在这个visitInsn方法之前，同时也要在方法reuturn和出错抛异常之前（方法结束之前，return和抛异常都会结束当前方法）
 
 		7.创建class生成器类（将改造后的class输出）
 			创建ClassGenerator（FL-brotherhood下 helper/utils/src/utils/jvm/asm/ClassGenerator.java）

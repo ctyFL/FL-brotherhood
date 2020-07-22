@@ -84,46 +84,78 @@ public class MyClassAdapter extends ClassVisitor {
 		public void visitCode() {
 			mv.visitCode();
 			//将之前复制出来的代码块复制过来
-			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
-			mv.visitVarInsn(Opcodes.LSTORE, 1);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;", false);
+			mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
+			mv.visitInsn(Opcodes.ICONST_1);
+			mv.visitInsn(Opcodes.AALOAD);
+			mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StackTraceElement", "getClassName", "()Ljava/lang/String;", false);
+			mv.visitVarInsn(Opcodes.ASTORE, 1);
 			Label label3 = new Label();
 			mv.visitLabel(label3);
-			mv.visitLineNumber(39, label3);
+			mv.visitLineNumber(27, label3);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;", false);
+			mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
+			mv.visitInsn(Opcodes.ICONST_1);
+			mv.visitInsn(Opcodes.AALOAD);
+			mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StackTraceElement", "getMethodName", "()Ljava/lang/String;", false);
+			mv.visitVarInsn(Opcodes.ASTORE, 2);
+			Label label4 = new Label();
+			mv.visitLabel(label4);
+			mv.visitLineNumber(28, label4);
+			mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+			mv.visitVarInsn(Opcodes.LSTORE, 3);
+			Label label5 = new Label();
+			mv.visitLabel(label5);
+			mv.visitLineNumber(30, label5);
 		}
 		
 		@Override
 		public void visitInsn(int opcode) {
-			mv.visitInsn(opcode);
+			
 			//将之前复制出来的代码块复制过来
 			if((opcode >= Opcodes.IRETURN && opcode <= Opcodes.RETURN) 
-					|| opcode == Opcodes.ATHROW) {//操作码b必须大于等于 ireturn （还没有到return），还有一种方法结束情况是抛异常
-				Label label7 = new Label();
-				mv.visitLabel(label7);
-				mv.visitLineNumber(44, label7);
-				mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
-				mv.visitVarInsn(Opcodes.LSTORE, 3);
-				Label label8 = new Label();
-				mv.visitLabel(label8);
-				mv.visitLineNumber(45, label8);
-				mv.visitVarInsn(Opcodes.LLOAD, 3);
-				mv.visitVarInsn(Opcodes.LLOAD, 1);
-				mv.visitInsn(Opcodes.LSUB);
-				mv.visitVarInsn(Opcodes.LSTORE, 5);
+					|| opcode == Opcodes.ATHROW) {//到代码结尾return之前，还有一种方法结束情况是抛异常之前（操作码必须大于等于 ireturn （还没有到return））
 				Label label9 = new Label();
 				mv.visitLabel(label9);
-				mv.visitLineNumber(46, label9);
+				mv.visitLineNumber(35, label9);
+				mv.visitMethodInsn(Opcodes.INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+				mv.visitVarInsn(Opcodes.LSTORE, 5);
+				Label label10 = new Label();
+				mv.visitLabel(label10);
+				mv.visitLineNumber(36, label10);
+				mv.visitVarInsn(Opcodes.LLOAD, 5);
+				mv.visitVarInsn(Opcodes.LLOAD, 3);
+				mv.visitInsn(Opcodes.LSUB);
+				mv.visitVarInsn(Opcodes.LSTORE, 7);
+				Label label11 = new Label();
+				mv.visitLabel(label11);
+				mv.visitLineNumber(37, label11);
 				mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
 				mv.visitTypeInsn(Opcodes.NEW, "java/lang/StringBuilder");
 				mv.visitInsn(Opcodes.DUP);
-				mv.visitLdcInsn("method: doWithASM() took ");
+				mv.visitLdcInsn("\u7c7b\u540d\uff1a");
 				mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "(Ljava/lang/String;)V", false);
-				mv.visitVarInsn(Opcodes.LLOAD, 5);
+				mv.visitVarInsn(Opcodes.ALOAD, 1);
+				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+				mv.visitLdcInsn(" \u65b9\u6cd5\uff1a");
+				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+				mv.visitVarInsn(Opcodes.ALOAD, 2);
+				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+				mv.visitLdcInsn("() \u8017\u65f6  ");
+				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+				mv.visitVarInsn(Opcodes.LLOAD, 7);
 				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
 				mv.visitLdcInsn(" ms");
 				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
 				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
 				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+				//以下可以删除
+//				mv.visitLabel(label1);
+//				mv.visitLineNumber(38, label1);
 			}
+			
+			//到这一行时，代码真正到结尾结束了，所以要在这之前把功能加上
+			mv.visitInsn(opcode);
 		}
 		
 	}

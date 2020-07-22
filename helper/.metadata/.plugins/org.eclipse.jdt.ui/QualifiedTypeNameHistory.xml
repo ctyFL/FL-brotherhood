@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.FileItem"/>
-<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory"/>
-<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"/>
-<fullyQualifiedTypeName name="org.apache.commons.fileupload.FileItem"/>
-<fullyQualifiedTypeName name="org.apache.coyote.http11.filters.SavedRequestInputFilter"/>
-<fullyQualifiedTypeName name="sun.awt.image.BytePackedRaster"/>
-<fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
-<fullyQualifiedTypeName name="java.util.UUID"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
-<fullyQualifiedTypeName name="utils.DateUtil"/>
-<fullyQualifiedTypeName name="utils.StringUtil_FL"/>
-<fullyQualifiedTypeName name="org.omg.CORBA.COMM_FAILURE"/>
-<fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="java.nio.charset.spi.CharsetProvider"/>
 <fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
 <fullyQualifiedTypeName name="java.net.HttpURLConnection"/>
@@ -34,8 +21,6 @@
 <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFCell"/>
 <fullyQualifiedTypeName name="java.io.PrintStream"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="java.io.File"/>
-<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
@@ -59,5 +44,20 @@
 <fullyQualifiedTypeName name="javax.ws.rs.core.Context"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.awt.Toolkit"/>
+<fullyQualifiedTypeName name="java.sql.Time"/>
+<fullyQualifiedTypeName name="utils.jvm.asm.CustomerDemo"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.util.ASMifier"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.MethodVisitor"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.Label"/>
+<fullyQualifiedTypeName name="utils.jvm.asm.MyClassVisitor.MyMethodVisitor"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.ClassWriter"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.ClassVisitor"/>
+<fullyQualifiedTypeName name="utils.jvm.asm.MyClassAdapter"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.ClassReader"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="org.objectweb.asm.Opcodes"/>
 </qualifiedTypeNameHistroy>
