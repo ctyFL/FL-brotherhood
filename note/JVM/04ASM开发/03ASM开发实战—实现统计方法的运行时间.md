@@ -1,4 +1,4 @@
-ASM开发实战————实现统计方法的运行时间，并打印当前类名和方法名（性能调优的时候想要知道一个方法的运行时间是多少，然而提前埋点是不可能的，不可能在每个方法的开头结尾都打个桩，实现方式类似AOP）
+ASM开发实战————实现统计方法的运行时间（性能调优的时候想要知道一个方法的运行时间是多少，然而提前埋点是不可能的，不可能在每个方法的开头结尾都打个桩，实现方式类似AOP）
 
 		ASM给我们提供了 ASMifier 工具来帮助开发，可使用这个工具生成ASM结构来对比（将原先的文件和修改后的文件对比）
 
@@ -12,9 +12,7 @@ ASM开发实战————实现统计方法的运行时间，并打印当前�
 		1.创建一个需要被修改的类，统计这个类中的某个方法的运行时间：
 			FL-brotherhood下 helper/utils/src/utils/jvm/asm/CustomerDemo.java
 			CustomerDemo中创建一个方法，doSameThing()————这个方法中先使用埋点的方法实现这个功能：
-			在方法的头和尾使用Thread.currentThread() .getStackTrace()[1].getClassName()获取类全名
-			使用Thread.currentThread().getStackTrace()[1].getMethodName()获取方法名
-			使用System.currentTimeMillis()获取当前时间毫秒数，最后的差值就是该方法运行消耗的时间
+			在方法的头和尾使用System.currentTimeMillis()获取当前时间毫秒数，最后的差值就是该方法运行消耗的时间
 
 		2.使用 “ASMifier工具” 生成一份这个类使用埋点的方法实现了这个功能的代码：
 			首先在该类的编译后的class文件的所在的位置下cmd，也就是在（E:\gitHub\gitHubProject\FL-brotherhood\helper\utils\bin\utils\jvm\asm）：
@@ -30,7 +28,7 @@ ASM开发实战————实现统计方法的运行时间，并打印当前�
 		3.在doSameThing()方法中，去掉埋点，然后再使用 “ASMifier工具” 生成一次，把新生成的代码复制出来：addFunctionBefore.txt
 
 		4.比较两份代码的不同之处，也就是减少了的部分，把新增的代码块复制出来：dif.txt
-			这部分减少的代码块就是我们所要新增的功能，这几行代码就是对应“获得类全名、方法名和System.currentTimeMillis()”的那几行代码
+			这部分减少的代码块就是我们所要新增的功能，这几行代码就是对应“System.currentTimeMillis()”的那几行代码
 
 		原理：“ASMifier工具” 生成的代码，就是ASM以visitor的方式去操作字节码的指令，我们就是利用它来帮助我们生成代码，就不需要我们自己去编写了，我们先写好想要改造后的代码，给ASMifier生成一遍，再和改造前比较，就能获得我们想要的代码
 
@@ -78,3 +76,9 @@ ASM开发实战————实现统计方法的运行时间，并打印当前�
 			里面实现功能：1.使用 ClassReader 解析 class 字节码
 						 2.使用我们自己实现的 ClassAdapter 对字节码改造（增加统计时间）
 						 3.使用 ClassWriter 将改造后的 class 输出
+
+		8.创建测试类JvmAsmTest进行测试（FL-brotherhood下 helper/utils/src/test/JvmAsmTest.java）
+			调用CustomerDemo的doSameThing()方法，此时会报错 “java.lang.VerifyError: Bad local variable type”，因为ASM修改class文件，会对方法中的本地变量造成影响，因为代码中原先标志着“位置1”可能存储着一个方法中原本的变量，修改后，若我们增加的功能中也去储存了局部变量，“位置1”变成了存了其他类型的变量，就冲突了，如示例中被我们强行修改成了储存获得当前时间毫秒数的long型，所以出错了，此时若将doSameThing()方法中的局部变量去掉（示例中，去掉埋点后为它原本的业务代码中，局部变量就是try/catch块中Exception e的“e”这个局部变量）此时测试就不会报错，然而这不合理，因为你不能去修改它原有的业务代码，只能是我们追加功能的时候去迁就原来的业务功能代码
+
+		9.解决————由于我们增加的功能中需要存储局部变量，会有和原有的业务代码产生冲突的可能（若原来的业务代码中也有局部变量），所以我们将我们增加的功能封装起来，封装到类、方法中去
+			创建MyTimeLog类，将我们增加的功能都封装到这个类中（FL-brotherhood下 helper/utils/src/utils/jvm/asm/MyTimeLog.java）
