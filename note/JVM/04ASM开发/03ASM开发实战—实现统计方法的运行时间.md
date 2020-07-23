@@ -81,4 +81,11 @@ ASM开发实战————实现统计方法的运行时间（性能调优的�
 			调用CustomerDemo的doSameThing()方法，此时会报错 “java.lang.VerifyError: Bad local variable type”，因为ASM修改class文件，会对方法中的本地变量造成影响，因为代码中原先标志着“位置1”可能存储着一个方法中原本的变量，修改后，若我们增加的功能中也去储存了局部变量，“位置1”变成了存了其他类型的变量，就冲突了，如示例中被我们强行修改成了储存获得当前时间毫秒数的long型，所以出错了，此时若将doSameThing()方法中的局部变量去掉（示例中，去掉埋点后为它原本的业务代码中，局部变量就是try/catch块中Exception e的“e”这个局部变量）此时测试就不会报错，然而这不合理，因为你不能去修改它原有的业务代码，只能是我们追加功能的时候去迁就原来的业务功能代码
 
 		9.解决————由于我们增加的功能中需要存储局部变量，会有和原有的业务代码产生冲突的可能（若原来的业务代码中也有局部变量），所以我们将我们增加的功能封装起来，封装到类、方法中去
-			创建MyTimeLog类，将我们增加的功能都封装到这个类中（FL-brotherhood下 helper/utils/src/utils/jvm/asm/MyTimeLog.java）
+			创建MyTimeLog类":
+			将我们增加的功能都封装到这个类中（FL-brotherhood下 helper/utils/src/utils/jvm/asm/MyTimeLog.java）
+			MyTimeLog类中，我们将获得的当前系统时间用static静态资源的方式储存，将计算时间的功能封装到静态方法中
+			（当前系统时间的变量用静态属性，所有类的实例都共享这一属性，全局唯一，一处变，处处变，所以线程不安全，但是这里先不去考虑并发）
+
+		10.此时我们就可以使用MyTimeLog.Start()、MyTimeLog.end()作为埋点（这时候埋点中就没有局部变量了）
+		然后再次使用“ASMifier工具”生成两份代码获得ASM以visitor的方式调用操作码计算方法运行时间（埋点部分）的代码
+		新建MyClassAdapterV2类（FL-brotherhood下 helper/utils/src/utils/jvm/asm/MyClassAdapterV2.java）使用新的代码去修改class，最后测试
