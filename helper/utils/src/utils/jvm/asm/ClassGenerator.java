@@ -24,7 +24,8 @@ public class ClassGenerator {
 			
 			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 			
-			ClassVisitor visitor = new MyClassAdapter(writer);
+			//ClassVisitor visitor = new MyClassAdapter(writer);
+			ClassVisitor visitor = new MyClassAdapterV2(writer);
 			
 			reader.accept(visitor, ClassReader.SKIP_DEBUG);//开始读，跳过调试
 			

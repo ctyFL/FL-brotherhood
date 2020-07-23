@@ -87,5 +87,5 @@ ASM开发实战————实现统计方法的运行时间（性能调优的�
 			（当前系统时间的变量用静态属性，所有类的实例都共享这一属性，全局唯一，一处变，处处变，所以线程不安全，但是这里先不去考虑并发）
 
 		10.此时我们就可以使用MyTimeLog.Start()、MyTimeLog.end()作为埋点（这时候埋点中就没有局部变量了）
-		然后再次使用“ASMifier工具”生成两份代码获得ASM以visitor的方式调用操作码计算方法运行时间（埋点部分）的代码
+		然后再次使用“ASMifier工具”生成两份代码（addFunctionBeforeV2.txt addFunctionAfterV2.txt difV2.txt）获得ASM以visitor的方式调用操作码计算方法运行时间（埋点部分）的代码
 		新建MyClassAdapterV2类（FL-brotherhood下 helper/utils/src/utils/jvm/asm/MyClassAdapterV2.java）使用新的代码去修改class，最后测试

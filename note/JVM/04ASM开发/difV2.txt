@@ -1,0 +1,57 @@
+比较addFunctionBeforeV2与addFunctionAfterV2
+
+
+
+头部：
+addFunctionBeforeV2在以下两个代码块之间
+
+{
+methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "doSameThing", "()V", null, null);
+methodVisitor.visitCode();
+Label label0 = new Label();
+Label label1 = new Label();
+Label label2 = new Label();
+methodVisitor.visitTryCatchBlock(label0, label1, label2, "java/lang/Exception");
+methodVisitor.visitLabel(label0);
+methodVisitor.visitLineNumber(35, label0);
+}
+...
+{
+methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+methodVisitor.visitLdcInsn("doSameThing() method start \u2014\u2014\u2014\u2014>");
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+}
+减少了这部分代码：
+{
+methodVisitor.visitMethodInsn(INVOKESTATIC, "utils/jvm/asm/MyTimeLog", "Start", "()V", false);
+Label label3 = new Label();
+methodVisitor.visitLabel(label3);
+methodVisitor.visitLineNumber(37, label3);
+}
+
+
+
+尾部：
+addFunctionBeforeV2在以下两个代码块之间
+
+{
+methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+methodVisitor.visitLdcInsn("doSameThing() method end <\u2014\u2014\u2014\u2014");
+methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+}
+...
+{
+Label label8 = new Label();
+methodVisitor.visitJumpInsn(GOTO, label8);
+methodVisitor.visitLabel(label2);
+methodVisitor.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {"java/lang/Exception"});
+}
+减少了这部分代码：
+{
+Label label7 = new Label();
+methodVisitor.visitLabel(label7);
+methodVisitor.visitLineNumber(42, label7);
+methodVisitor.visitMethodInsn(INVOKESTATIC, "utils/jvm/asm/MyTimeLog", "end", "()V", false);
+methodVisitor.visitLabel(label1);
+methodVisitor.visitLineNumber(46, label1);
+}

@@ -3,7 +3,7 @@
 
 
 头部：
-addFunctionAfter在以下两个代码块之间
+addFunctionBefore在以下两个代码块之间
 
 {
 methodVisitor = classWriter.visitMethod(ACC_PUBLIC, "doSameThing", "()V", null, null);
@@ -33,7 +33,7 @@ methodVisitor.visitLineNumber(31, label3);
 
 
 尾部：
-addFunctionAfter在以下两个代码块之间
+addFunctionBefore在以下两个代码块之间
 
 {
 methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");

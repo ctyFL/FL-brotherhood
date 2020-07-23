@@ -32,14 +32,14 @@ public class CustomerDemo {
 		
 		try {
 //			long startTime = System.currentTimeMillis();
-			MyTimeLog.Start();
+//			MyTimeLog.Start();
 			
 			System.out.println("doSameThing() method start ————>");
 			System.out.println("doing someThing ...");
 			Thread.sleep(700);
 			System.out.println("doSameThing() method end <————");
 			
-			MyTimeLog.end();
+//			MyTimeLog.end();
 //			long endTime = System.currentTimeMillis();
 //			long tookTime = endTime - startTime;
 //			System.out.println("================= 耗时  " + tookTime + " ms =================");
