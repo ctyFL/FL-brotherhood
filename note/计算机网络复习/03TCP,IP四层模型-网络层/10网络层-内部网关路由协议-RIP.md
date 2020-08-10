@@ -8,9 +8,34 @@
 				5.每一个节点根据交换的信息更新自己的节点信息
 
 
-				Di1：表示从 “节点i” 到 “节点1” 的距离
-				Si1：表示从 “节点i” 到 “节点1” 的下一个节点
+				di1：表示从 “节点i” 到 “节点1” 的距离
+				si1：表示从 “节点i” 到 “节点1” 的下一个节点
+				
+				这个算法的目的就是求出这个D距离的最小值
+				dij = min(dix + dxj)
 
-				Din
-				Sin
-				n：表示节点数量
+
+
+
+
+
+			见图（以图的形式描述网络拓扑.jpg）
+			图上有A、B、C、D、E、F这6个节点，以及若干条边
+
+			就有Di，节点i分别到A、B、C、D、E、F这6个节点的距离：dia、dib、dic、did、die、dif
+			Di={dia，dib，dic，did，die，dif}
+
+			就有Si，节点i分别到A、B、C、D、E、F这6个节点的下一个节点是什么：sia、sib、sic、sid、sie、sif
+			Si={sia，sib，sic，sid，sie，sif}
+
+
+			以节点A来演示：
+
+			A的距离矢量信息（Da）：
+				目标节点   节点A到目标节点的距离
+				  A               0
+				  B               11
+				  C               12
+				  D               10
+				  E               21
+				  F               17
